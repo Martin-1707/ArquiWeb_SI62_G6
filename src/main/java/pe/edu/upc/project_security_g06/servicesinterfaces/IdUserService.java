@@ -1,16 +1,14 @@
 package pe.edu.upc.project_security_g06.servicesinterfaces;
 
-import org.springframework.data.repository.query.Param;
-import pe.edu.upc.project_security_g06.dtos.UserDTO;
-import pe.edu.upc.project_security_g06.entities.User;
+import pe.edu.upc.project_security_g06.entities.Users;
 
 import java.util.List;
 
 public interface IdUserService {
-    public List<User> list();
-    public void insert(User user);
-    public User listId(int id);
+    public List<Users> list();
+    public void insert(Users user);
+    public Users listId(int id);
     public void delete(int id);
-    public void update(User user);
-    public List<User> buscar (String username);
+    public void update(Users user);
+    public List<Users> buscar (String username);
 }
