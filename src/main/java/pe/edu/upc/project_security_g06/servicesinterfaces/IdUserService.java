@@ -10,5 +10,5 @@ public interface IdUserService {
     public Users listId(int id);
     public void delete(int id);
     public void update(Users user);
-    public List<Users> buscar (String username);
+    public List<Users>buscar(String username);
 }
