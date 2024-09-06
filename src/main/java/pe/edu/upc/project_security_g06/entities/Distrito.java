@@ -8,7 +8,6 @@ public class Distrito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDistrito;
-
     @Column(name = "nombre_distrito", nullable = false, length = 50)
     private String nombre_Distrito;
     @ManyToOne
