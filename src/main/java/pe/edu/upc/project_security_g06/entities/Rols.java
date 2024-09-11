@@ -22,6 +22,7 @@ public class Rols {
 
     public int getIdRoll() {return idRoll;}
     public void setIdRoll(int idRoll) {this.idRoll = idRoll;}
+
     public String getNombreRol() {return nombreRol;}
     public void setNombreRol(String nombreRol) {this.nombreRol = nombreRol;}
 
