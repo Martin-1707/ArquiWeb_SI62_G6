@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/ubicaciones")
-public class UbicacionsControllers {
+public class UbicacionController {
     @Autowired
     private idPostalService pS;
 
