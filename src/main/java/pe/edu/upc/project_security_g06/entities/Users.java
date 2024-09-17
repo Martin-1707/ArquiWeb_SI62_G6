@@ -2,6 +2,8 @@ package pe.edu.upc.project_security_g06.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 //Falta_poner_la_fk_de_roll
 @Entity
 @Table(name = "Usuario")
@@ -17,6 +19,8 @@ public class Users {
     private int dni;
     @Column(name = "Celular", nullable = false, length = 50)
     private int cel;
+    @Column(name = "fechaNacimiento",nullable = false)
+    private Date fechaNacimiento;
     @Column(name = "email", nullable = false, length = 50)
     private String email;
     @Column(name = "password", nullable = false, length = 50)
@@ -25,12 +29,13 @@ public class Users {
     public Users() {
     }
 
-    public Users(int idUser, String username, String UserLastName, int dni, int cel, String email, String password) {
+    public Users(int idUser, String username, String UserLastName, int dni, int cel, Date fechaNacimiento, String email, String password) {
         this.idUser = idUser;
         this.username = username;
         this.UserLastName = UserLastName;
         this.dni = dni;
         this.cel = cel;
+        this.fechaNacimiento = fechaNacimiento;
         this.email = email;
         this.password = password;
     }
@@ -75,7 +80,12 @@ public class Users {
     public void setCel(int cel) {
         this.cel = cel;
     }
-
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
     public String getEmail() {
         return email;
     }

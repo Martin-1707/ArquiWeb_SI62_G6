@@ -1,11 +1,14 @@
 package pe.edu.upc.project_security_g06.dtos;
 
+import java.util.Date;
+
 public class UserDTO {
     private int idUser;
     private String username;
     private String UserLastName;
     private int dni;
     private int cel;
+    private Date fechaNacimiento;
     private  String email;
     private String password;
 
@@ -40,6 +43,12 @@ public class UserDTO {
     }
     public void setCel(int cel) {
         this.cel = cel;
+    }
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
     public String getEmail() {
         return email;
