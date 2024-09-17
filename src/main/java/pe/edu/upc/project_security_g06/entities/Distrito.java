@@ -28,9 +28,7 @@ public class  Distrito {
     public void setIdDistrito(int idDistrito) { this.idDistrito = idDistrito; }
     public String getNombre_Distrito() { return nombre_Distrito; }
     public void setNombre_Distrito(String nombre_Distrito) { this.nombre_Distrito = nombre_Distrito; }
-
     public Ciudad getCiudad() { return ciudad; }
-
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
     }
