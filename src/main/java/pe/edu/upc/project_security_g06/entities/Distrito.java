@@ -11,7 +11,7 @@ public class  Distrito {
     @Column(name = "nombre_distrito", nullable = false, length = 50)
     private String nombre_Distrito;
     @ManyToOne
-    @JoinColumn(name="idCiudad")
+    @JoinColumn(name="idCiudad", nullable = false)
     private Ciudad ciudad;
 
 
