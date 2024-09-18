@@ -9,12 +9,12 @@ public class Ciudad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCiudad;
 
-    @Column(name = "nombre_ciudad", nullable = false, length = 50)
+    @Column(name = "nombre_ciudad", nullable = false, length = 20)
     private String nombre_ciudad;
 
     public Ciudad() { }
 
-    public Ciudad(int idCiudad, String nombre) {
+    public Ciudad(int idCiudad, String nombre_ciudad) {
         this.idCiudad = idCiudad;
         this.nombre_ciudad = nombre_ciudad;
     }
