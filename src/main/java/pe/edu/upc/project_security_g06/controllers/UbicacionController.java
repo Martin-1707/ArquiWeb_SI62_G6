@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.project_security_g06.dtos.UbicacionDTO;
 import pe.edu.upc.project_security_g06.entities.Ubicacion;
-import pe.edu.upc.project_security_g06.servicesimplements.UbicacionServiceImplement;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IUbicacionService;
 
 import java.util.List;

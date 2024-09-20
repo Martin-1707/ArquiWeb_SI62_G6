@@ -1,6 +1,7 @@
 package pe.edu.upc.project_security_g06.dtos;
 
 
+
 public class Contacto_EmergenciaDTO {
     private int IdContacto;
     private String nombre_contacto;
