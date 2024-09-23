@@ -29,11 +29,11 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
 
 
     @Query(value= "SELECT u.us_nombre, u.us_apellido,  d.nombre_dispositivo, r.rol)"+
-            "FROM users u"+
-            "JOIN roles r"+
-            "ON u.id_usario = r.user_id"+
-            "JOIN Dispositivo d"+
-            "ON u.id_usario = d.id_usario",nativeQuery = true)
+            " FROM users u"+
+            " JOIN roles r"+
+            " ON u.id_usario = r.user_id"+
+            " JOIN Dispositivo d"+
+            " ON u.id_usario = d.id_usario",nativeQuery = true)
     public List<String[]> findUsuariosWithDevicesAndRoles();
 
 
