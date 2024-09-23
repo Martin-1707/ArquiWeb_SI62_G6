@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.project_security_g06.dtos.UserDTO;
 import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoRolDTO;
+import pe.edu.upc.project_security_g06.dtos.UsuarioHistorialClinicoDTO;
 import pe.edu.upc.project_security_g06.entities.Users;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IUserService;
 
@@ -71,6 +72,23 @@ public class UserController {
             dto.setRolUsuario(columna[3]);
             listaDTO.add(dto);
         }
+        return listaDTO;
+    }
+
+    @GetMapping("/{idUsuario}/informacion-clinica")
+    public List<UsuarioHistorialClinicoDTO> obtenerInformacionClinicaPorUsuario(@PathVariable Long idUsuario) {
+        List<String[]> resultados = uS.obtenerInformacionClinicaPorUsuario(idUsuario);
+        List<UsuarioHistorialClinicoDTO> listaDTO = new ArrayList<>();
+
+        for (String[] fila : resultados) {
+            UsuarioHistorialClinicoDTO dto = new UsuarioHistorialClinicoDTO();
+            dto.setNombreUsuario(fila[0]);
+            dto.setApellidoUsuario(fila[1]);
+            dto.setNombreAlergia(fila[2]);
+            dto.setNombreEnfermedad(fila[3]);
+            listaDTO.add(dto);
+        }
+
         return listaDTO;
     }
 
