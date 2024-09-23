@@ -57,8 +57,6 @@ public class UserController {
         }).collect(Collectors.toList());
     }
 
-
-
     @GetMapping("/rolxdispositivodeusuario")
     public List<UsuarioDispositivoRolDTO>obtenerUsuariosConDispositivosYRoles(){
         List<String[]> lista=uS.obtenerUsuariosConDispositivosYRoles();

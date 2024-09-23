@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoRolDTO;
 import pe.edu.upc.project_security_g06.entities.Users;
 
 import java.util.List;
@@ -28,12 +27,12 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
     public void insRol(@Param("rol") String authority, @Param("user_id") Long user_id);
 
 
-    @Query(value= "SELECT u.us_nombre, u.us_apellido,  d.nombre_dispositivo, r.rol)"+
-            "FROM Users u"+
-            "JOIN roles r"+
-            "ON u.id_usario = r.user_id"+
-            "JOIN Dispositivo d"+
-            "ON u.id_usario = d.id_usario",nativeQuery = true)
+    @Query(value= "SELECT u.us_nombre, u.us_apellido,  d.nombre_dispositivo, r.rol"+
+            " FROM Users u"+
+            " JOIN roles r"+
+            " ON u.id_usario = r.user_id"+
+            " JOIN Dispositivo d"+
+            " ON u.id_usario = d.id_usario",nativeQuery = true)
     public List<String[]> findUsuariosWithDevicesAndRoles();
 
 }
