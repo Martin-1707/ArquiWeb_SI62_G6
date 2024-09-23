@@ -67,4 +67,11 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             "WHERE u.IdUsario = :idUsuario", nativeQuery = true)
     List<String[]> findEnfermedadesByUsuarioId(Long idUsuario);
 
+    @Query(value = "SELECT u.us_nombre, u.us_apellido, a.nombre_alergias, a.descripcion_alergias, a.causa_alergias " +
+            "FROM users u " +
+            "JOIN detalle_medico dm ON u.IdUsario = dm.IdHistorialClinico " +
+            "JOIN alergias a ON dm.IdAlergias = a.IdAlergias " +
+            "WHERE u.IdUsario = :idUsuario", nativeQuery = true)
+    List<String[]> findAlergiasByUsuarioId(Long idUsuario);
+
 }
