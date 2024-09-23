@@ -22,4 +22,6 @@ public interface IUserService {
 
     public List<String[]> obtenerHistorialUbicacionPorUsuario(Long idUsuario);
 
+    public List<String[]> obtenerEnfermedadesPorUsuario(Long idUsuario);
+
 }

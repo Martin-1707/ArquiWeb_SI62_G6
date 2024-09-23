@@ -88,7 +88,6 @@ public class UserController {
             dto.setNombreEnfermedad(fila[3]);
             listaDTO.add(dto);
         }
-
         return listaDTO;
     }
 
@@ -104,7 +103,6 @@ public class UserController {
             dto.setCantidadDispositivos(Long.parseLong(fila[2]));
             listaDTO.add(dto);
         }
-
         return listaDTO;
     }
 
@@ -122,9 +120,24 @@ public class UserController {
             dto.setUbicacion(fila[4]);
             listaDTO.add(dto);
         }
-
         return listaDTO;
     }
 
+    @GetMapping("/{idUsuario}/enfermedades")
+    public List<UsuarioEnfermedadDTO> obtenerEnfermedadesPorUsuario(@PathVariable Long idUsuario) {
+        List<String[]> resultados = uS.obtenerEnfermedadesPorUsuario(idUsuario);
+        List<UsuarioEnfermedadDTO> listaDTO = new ArrayList<>();
+
+        for (String[] fila : resultados) {
+            UsuarioEnfermedadDTO dto = new UsuarioEnfermedadDTO();
+            dto.setNombreUsuario(fila[0]);
+            dto.setApellidoUsuario(fila[1]);
+            dto.setNombreEnfermedad(fila[2]);
+            dto.setDescripcionEnfermedad(fila[3]);
+            dto.setTipoEnfermedad(fila[4]);
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
 
 }
