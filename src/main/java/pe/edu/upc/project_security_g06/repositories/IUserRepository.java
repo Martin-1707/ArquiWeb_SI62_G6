@@ -29,7 +29,7 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
 
 
     @Query(value= "SELECT u.us_nombre, u.us_apellido,  d.nombre_dispositivo, r.rol)"+
-            "FROM Users u"+
+            "FROM users u"+
             "JOIN roles r"+
             "ON u.id_usario = r.user_id"+
             "JOIN Dispositivo d"+
@@ -45,5 +45,11 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             "JOIN enfermedades e ON dm.id_enfermedades = e.id_enfermedades " +
             "WHERE u.id_usario = :idUsuario", nativeQuery = true)
     List<String[]> findInformacionClinicaByUsuarioId(Long idUsuario);
+
+    @Query(value = "SELECT u.us_nombre, u.us_apellido, COUNT(d.Idispositivo) AS cantidad_dispositivos " +
+            "FROM users u " +
+            "LEFT JOIN dispositivo d ON u.IdUsario = d.IdUsario " +
+            "GROUP BY u.us_nombre, u.us_apellido", nativeQuery = true)
+    List<String[]> findCantidadDispositivosPorUsuario();
 
 }

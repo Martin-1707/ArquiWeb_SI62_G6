@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.project_security_g06.dtos.UserDTO;
+import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoCountDTO;
 import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoRolDTO;
 import pe.edu.upc.project_security_g06.dtos.UsuarioHistorialClinicoDTO;
 import pe.edu.upc.project_security_g06.entities.Users;
@@ -86,6 +87,22 @@ public class UserController {
             dto.setApellidoUsuario(fila[1]);
             dto.setNombreAlergia(fila[2]);
             dto.setNombreEnfermedad(fila[3]);
+            listaDTO.add(dto);
+        }
+
+        return listaDTO;
+    }
+
+    @GetMapping("/cantidad-dispositivos")
+    public List<UsuarioDispositivoCountDTO> obtenerCantidadDispositivosPorUsuario() {
+        List<String[]> resultados = uS.obtenerCantidadDispositivosPorUsuario();
+        List<UsuarioDispositivoCountDTO> listaDTO = new ArrayList<>();
+
+        for (String[] fila : resultados) {
+            UsuarioDispositivoCountDTO dto = new UsuarioDispositivoCountDTO();
+            dto.setNombreUsuario(fila[0]);
+            dto.setApellidoUsuario(fila[1]);
+            dto.setCantidadDispositivos(Long.parseLong(fila[2]));
             listaDTO.add(dto);
         }
 
