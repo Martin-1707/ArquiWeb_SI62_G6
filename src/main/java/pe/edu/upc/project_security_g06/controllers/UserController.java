@@ -73,21 +73,11 @@ public class UserController {
         return listaDTO;
     }
 
-    @GetMapping("/{idUsuario}/informacion-clinica")
-    public List<UsuarioHistorialClinicoDTO> obtenerInformacionClinicaPorUsuario(@PathVariable Long idUsuario) {
-        List<String[]> resultados = uS.obtenerInformacionClinicaPorUsuario(idUsuario);
-        List<UsuarioHistorialClinicoDTO> listaDTO = new ArrayList<>();
-
-        for (String[] fila : resultados) {
-            UsuarioHistorialClinicoDTO dto = new UsuarioHistorialClinicoDTO();
-            dto.setNombreUsuario(fila[0]);
-            dto.setApellidoUsuario(fila[1]);
-            dto.setNombreAlergia(fila[2]);
-            dto.setNombreEnfermedad(fila[3]);
-            listaDTO.add(dto);
-        }
-
-        return listaDTO;
+    @GetMapping("/{idUsuario}/informacionclinica")
+    public UsuarioHistorialClinicoDTO obtenerInformacionClinicaXusuario(@PathVariable("idUsuario") Integer id) {
+        ModelMapper m = new ModelMapper();
+        UsuarioHistorialClinicoDTO dto = m.map(uS.obtenerInformacionClinicaPorUsuario(id), UsuarioHistorialClinicoDTO.class);
+        return dto;
     }
 
 }
