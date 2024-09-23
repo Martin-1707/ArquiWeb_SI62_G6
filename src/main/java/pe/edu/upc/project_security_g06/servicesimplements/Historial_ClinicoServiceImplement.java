@@ -15,4 +15,5 @@ public class Historial_ClinicoServiceImplement implements IdHistorial_ClinicoSer
     public void insert(Historial_Clinico histclinico) {
         hcR.save(histclinico);
     }
+
 }

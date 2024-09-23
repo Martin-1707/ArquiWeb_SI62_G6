@@ -20,4 +20,6 @@ public class HistorialClinicoController {
         Historial_Clinico d=m.map(dto,Historial_Clinico.class);
         hcS.insert(d);
     }
+
+
 }

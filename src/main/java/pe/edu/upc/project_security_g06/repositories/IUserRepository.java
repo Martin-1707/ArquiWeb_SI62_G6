@@ -35,4 +35,14 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             " ON u.id_usario = d.id_usario",nativeQuery = true)
     public List<String[]> findUsuariosWithDevicesAndRoles();
 
+
+    @Query(value = "SELECT u.us_nombre, u.us_apellido, a.nombre_alergias, e.nombre_enfermedad " +
+            "FROM users u " +
+            "JOIN historial_clinico hc ON u.id_usario = hc.id_usuario " +
+            "JOIN detalle_medico dm ON hc.id_historial_clinico = dm.id_historial_clinico " +
+            "JOIN alergias a ON dm.id_alergias = a.id_alergias " +
+            "JOIN enfermedades e ON dm.id_enfermedades = e.id_enfermedades " +
+            "WHERE u.id_usario = :idUsuario", nativeQuery = true)
+    List<String[]> findInformacionClinicaByUsuarioId(Long idUsuario);
+
 }
