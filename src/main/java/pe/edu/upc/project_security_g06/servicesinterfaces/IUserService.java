@@ -20,4 +20,6 @@ public interface IUserService {
 
     public List<String[]> obtenerCantidadDispositivosPorUsuario();
 
+    public List<String[]> obtenerHistorialUbicacionPorUsuario(Long idUsuario);
+
 }

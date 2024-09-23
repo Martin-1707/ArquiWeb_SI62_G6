@@ -52,4 +52,12 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             "GROUP BY u.us_nombre, u.us_apellido", nativeQuery = true)
     List<String[]> findCantidadDispositivosPorUsuario();
 
+    @Query(value = "SELECT u.us_nombre, u.us_apellido, hu.fecha, hu.hora, ub.direccion " +
+            "FROM users u " +
+            "JOIN dispositivo d ON u.IdUsario = d.IdUsario " +
+            "JOIN historial_ubicacion hu ON d.Iddispositivo = hu.Iddispositivo " +
+            "JOIN ubicacion ub ON hu.IdUbicacion = ub.IdUbicacion " +
+            "WHERE u.IdUsario = :idUsuario", nativeQuery = true)
+    List<String[]> findHistorialUbicacionByUsuarioId(Long idUsuario);
+
 }
