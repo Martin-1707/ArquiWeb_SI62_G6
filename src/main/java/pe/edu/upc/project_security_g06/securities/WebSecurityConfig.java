@@ -19,8 +19,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
-import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -33,7 +31,7 @@ public class WebSecurityConfig {
     private UserDetailsService jwtUserDetailsService;
 
     @Autowired
-    private pe.edu.upc.project_security_g06.securities.JwtRequestFilter jwtRequestFilter;
+    private JwtRequestFilter jwtRequestFilter;
 
     @Autowired
     @Qualifier("handlerExceptionResolver")
@@ -60,7 +58,7 @@ public class WebSecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers(antMatcher("/login")).permitAll()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/login").permitAll() // Permitir acceso a Swagger y login sin autenticación
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
@@ -68,6 +66,7 @@ public class WebSecurityConfig {
                 .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(Customizer.withDefaults());
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
         return httpSecurity.build();
     }
 }
