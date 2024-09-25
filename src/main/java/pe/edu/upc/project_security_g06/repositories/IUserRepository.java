@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upc.project_security_g06.entities.Users;
 
+import java.util.List;
+
 
 @Repository
 public interface IUserRepository extends JpaRepository<Users, Long> {
@@ -23,5 +25,25 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
     @Modifying
     @Query(value = "insert into roles (rol, user_id) VALUES (:rol, :user_id)", nativeQuery = true)
     public void insRol(@Param("rol") String authority, @Param("user_id") Long user_id);
+
+
+    @Query(value= "SELECT u.us_nombre, u.us_apellido,  d.nombre_dispositivo, r.rol"+
+            " FROM Users u"+
+            " JOIN roles r"+
+            " ON u.id_usario = r.user_id"+
+            " JOIN Dispositivo d"+
+            " ON u.id_usario = d.id_usario",nativeQuery = true)
+    public List<String[]> findUsuariosWithDevicesAndRoles();
+
+
+    @Query(value = "SELECT u.us_nombre, u.us_apellido, a.nombre_alergias, e.nombre_enfermedad\n" +
+            "FROM users u\n" +
+            "JOIN historial_clinico hc ON u.id_usario = hc.id_usario\n" +
+            "JOIN detalle_medico dm ON hc.id_historial_clinico = dm.id_historial_clinico\n" +
+            "JOIN alergias a ON dm.id_alergias = a.id_alergias\n" +
+            "JOIN enfermedades e ON dm.id_enfermedades = e.id_enfermedades\n" +
+            "WHERE u.id_usario = hc.id_usario;", nativeQuery = true)
+    public List<String[]> findInformacionClinicaByUsuarioId(@Param("idUsuario") int idUsuario);
+
 
 }

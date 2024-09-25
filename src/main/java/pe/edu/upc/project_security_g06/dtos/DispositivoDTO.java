@@ -1,5 +1,7 @@
 package pe.edu.upc.project_security_g06.dtos;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import pe.edu.upc.project_security_g06.entities.Contacto_Autoridades;
 import pe.edu.upc.project_security_g06.entities.Users;
 import pe.edu.upc.project_security_g06.entities.Contacto_Emergencia;
@@ -42,4 +44,8 @@ public class DispositivoDTO {
     public void setContactoEmergencia(Contacto_Emergencia contactoEmergencia){
         this.contactoEmergencia = contactoEmergencia;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Users users;
 }

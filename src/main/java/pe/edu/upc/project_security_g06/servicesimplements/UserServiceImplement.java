@@ -1,6 +1,7 @@
 package pe.edu.upc.project_security_g06.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.project_security_g06.entities.Users;
 import pe.edu.upc.project_security_g06.repositories.IUserRepository;
@@ -32,4 +33,15 @@ public class UserServiceImplement implements IUserService {
     public Users listarId(Long idUsuario) {
         return uR.findById(idUsuario).orElse(new Users());
     }
+
+    @Override
+    public List<String[]> obtenerUsuariosConDispositivosYRoles() {
+        return uR.findUsuariosWithDevicesAndRoles();
+    }
+
+    @Override
+    public List<String[]> obtenerInformacionClinicaPorUsuario(int idUsuario) {
+        return uR.findInformacionClinicaByUsuarioId(idUsuario);
+    }
+
 }

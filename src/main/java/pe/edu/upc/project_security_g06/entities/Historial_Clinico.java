@@ -11,12 +11,17 @@ public class Historial_Clinico {
     @Column(name = "SeguroMed",nullable = false,length = 20)
     private String SeguroMed;
 
+    @ManyToOne
+    @JoinColumn(name = "IdUsario", nullable = false)
+    private Users users;
+
     public Historial_Clinico() {
     }
 
-    public Historial_Clinico(int IdHistorialClinico, String SeguroMed) {
+    public Historial_Clinico(int IdHistorialClinico, String SeguroMed, Users users) {
         this.IdHistorialClinico = IdHistorialClinico;
         this.SeguroMed = SeguroMed;
+        this.users = users;
     }
     public int getIdHistorialClinico() {
         return IdHistorialClinico;
@@ -30,4 +35,6 @@ public class Historial_Clinico {
     public void setSeguroMed(String SeguroMed) {
         this.SeguroMed = SeguroMed;
     }
+    public Users getUsers() {return users; }
+    public void setUsers(Users users) {this.users = users;}
 }
