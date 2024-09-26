@@ -35,15 +35,14 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             " ON u.id_usario = d.id_usario",nativeQuery = true)
     public List<String[]> findUsuariosWithDevicesAndRoles();
 
-
-    @Query(value = "SELECT u.us_nombre, u.us_apellido, a.nombre_alergias, e.nombre_enfermedad\n" +
-            "FROM users u\n" +
-            "JOIN historial_clinico hc ON u.id_usario = hc.id_usario\n" +
-            "JOIN detalle_medico dm ON hc.id_historial_clinico = dm.id_historial_clinico\n" +
-            "JOIN alergias a ON dm.id_alergias = a.id_alergias\n" +
-            "JOIN enfermedades e ON dm.id_enfermedades = e.id_enfermedades\n" +
-            "WHERE u.id_usario = hc.id_usario;", nativeQuery = true)
-    public List<String[]> findInformacionClinicaByUsuarioId(@Param("idUsuario") int idUsuario);
+    @Query(value = "SELECT u.us_nombre, u.us_apellido, a.nombre_alergias, e.nombre_enfermedad " +
+            "FROM users u " +
+            "JOIN historial_clinico hc ON u.id_usario = hc.id_usario " +
+            "JOIN detalle_medico dm ON hc.id_historial_clinico = dm.id_historial_clinico " +
+            "JOIN alergias a ON dm.id_alergias = a.id_alergias " +
+            "JOIN enfermedades e ON dm.id_enfermedades = e.id_enfermedades " +
+            "WHERE u.id_usario = hc.id_usario", nativeQuery = true)
+    List<String[]> findInformacionClinicaByUsuarioId(Long idUsuario);
 
 
 }
