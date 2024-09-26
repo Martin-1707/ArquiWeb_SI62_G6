@@ -53,4 +53,9 @@ public class UserServiceImplement implements IUserService {
     public List<String[]> obtenerHistorialUbicacionPorUsuario(Long idUsuario) {
         return uR.findHistorialUbicacionByUsuarioId(idUsuario);
     }
+
+    @Override
+    public List<String[]> obtenerEnfermedadesPorUsuario(Long idUsuario) {
+        return uR.findEnfermedadesByUsuarioId(idUsuario);
+    }
 }
