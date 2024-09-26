@@ -4,13 +4,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.project_security_g06.dtos.UserDTO;
-import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoCountDTO;
-import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoRolDTO;
-import pe.edu.upc.project_security_g06.dtos.UsuarioHistorialClinicoDTO;
+import pe.edu.upc.project_security_g06.dtos.*;
 import pe.edu.upc.project_security_g06.entities.Users;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IUserService;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -101,6 +100,24 @@ public class UserController {
             dto.setNombreUsuario(fila[0]);
             dto.setApellidoUsuario(fila[1]);
             dto.setCantidadDispositivos(Long.parseLong(fila[2]));
+            listaDTO.add(dto);
+        }
+
+        return listaDTO;
+    }
+
+    @GetMapping("/{idUsuario}/historial-ubicaciones")
+    public List<UsuarioHistorialUbicacionDTO> obtenerHistorialUbicacionPorUsuario(@PathVariable Long idUsuario) {
+        List<String[]> resultados = uS.obtenerHistorialUbicacionPorUsuario(idUsuario);
+        List<UsuarioHistorialUbicacionDTO> listaDTO = new ArrayList<>();
+
+        for (String[] fila : resultados) {
+            UsuarioHistorialUbicacionDTO dto = new UsuarioHistorialUbicacionDTO();
+            dto.setNombreUsuario(fila[0]);
+            dto.setApellidoUsuario(fila[1]);
+            dto.setFecha(LocalDate.parse(fila[2]));
+            dto.setHora(LocalTime.parse(fila[3]));
+            dto.setDistrito(fila[4]);
             listaDTO.add(dto);
         }
 
