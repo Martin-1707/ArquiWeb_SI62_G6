@@ -10,6 +10,4 @@ import java.util.List;
 
 @Repository
 public interface IAlergiasRepository extends JpaRepository<Alergias, Integer> {
-    @Query("Select a from Alergias  a where a.nombre_alergias like %:nombre%" )
-    public List<Alergias> buscar(@Param("nombre") String nombre);
 }

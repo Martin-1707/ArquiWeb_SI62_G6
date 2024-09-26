@@ -73,11 +73,6 @@ public class UserController {
         return listaDTO;
     }
 
-    @GetMapping("/{idUsuario}/informacionclinica")
-    public UsuarioHistorialClinicoDTO obtenerInformacionClinicaXusuario(@PathVariable("idUsuario") Integer id) {
-        ModelMapper m = new ModelMapper();
-        UsuarioHistorialClinicoDTO dto = m.map(uS.obtenerInformacionClinicaPorUsuario(id), UsuarioHistorialClinicoDTO.class);
-        return dto;
-    }
+
 
 }

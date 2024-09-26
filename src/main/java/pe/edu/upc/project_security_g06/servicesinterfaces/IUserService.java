@@ -17,6 +17,4 @@ public interface IUserService {
 
     public List<String[]> obtenerUsuariosConDispositivosYRoles();
 
-    public Users obtenerInformacionClinicaPorUsuario(int idUsuario);
-
 }
