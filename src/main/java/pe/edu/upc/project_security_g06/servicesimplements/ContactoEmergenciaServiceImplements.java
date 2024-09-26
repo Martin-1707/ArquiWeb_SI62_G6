@@ -12,6 +12,7 @@ import java.util.List;
 public class ContactoEmergenciaServiceImplements implements IContacEmergenciaService {
     @Autowired
     private IContacEmergenciaRepository ceR;
+
     @Override
     public void insert(Contacto_Emergencia contactoEmergencia) {
         ceR.save(contactoEmergencia);
@@ -20,5 +21,15 @@ public class ContactoEmergenciaServiceImplements implements IContacEmergenciaSer
     @Override
     public List<Contacto_Emergencia> list() {
         return ceR.findAll();
+    }
+
+    @Override
+    public void update(Contacto_Emergencia contactoEmergencia) {
+        ceR.save(contactoEmergencia);
+    }
+
+    @Override
+    public void delete(int id) {
+        ceR.deleteById(id);
     }
 }

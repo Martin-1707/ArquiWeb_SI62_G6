@@ -25,4 +25,14 @@ public class ContactoAutoridadesServiceImplements implements IContacAutoridadesS
     public List<Contacto_Autoridades> list() {
         return caR.findAll();
     }
+
+    @Override
+    public void update(Contacto_Autoridades cont_auto) {
+        caR.save(cont_auto);
+    }
+
+    @Override
+    public void delete(int id) {
+        caR.deleteById(id);
+    }
 }
