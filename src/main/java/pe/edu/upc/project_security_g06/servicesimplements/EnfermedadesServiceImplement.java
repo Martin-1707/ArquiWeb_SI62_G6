@@ -14,12 +14,22 @@ public class EnfermedadesServiceImplement implements IdEnfermedadService{
     private IEnfermedadesRepository eR;
 
     @Override
-    public List<Enfermedades> listarEnfermedades() {
+    public void insert(Enfermedades enfermedades) {
+        eR.save(enfermedades);
+    }
+
+    @Override
+    public List<Enfermedades> list() {
         return eR.findAll();
     }
 
     @Override
-    public void insert(Enfermedades enfe) {
-        eR.save(enfe);
+    public void update(Enfermedades enfermedades) {
+        eR.save(enfermedades);
+    }
+
+    @Override
+    public void delete(int id) {
+        eR.deleteById(id);
     }
 }
