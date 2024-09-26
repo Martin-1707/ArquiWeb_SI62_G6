@@ -142,4 +142,22 @@ public class UserController {
         return listaDTO;
     }
 
+    @GetMapping("/{idUsuario}/alergias")
+    public List<UsuarioAlergiaDTO> obtenerAlergiasPorUsuario(@PathVariable Long idUsuario) {
+        List<String[]> resultados = uS.obtenerAlergiasPorUsuario(idUsuario);
+        List<UsuarioAlergiaDTO> listaDTO = new ArrayList<>();
+
+        for (String[] fila : resultados) {
+            UsuarioAlergiaDTO dto = new UsuarioAlergiaDTO();
+            dto.setNombreUsuario(fila[0]);
+            dto.setApellidoUsuario(fila[1]);
+            dto.setNombreAlergia(fila[2]);
+            dto.setDescripcionAlergia(fila[3]);
+            dto.setCausaAlergia(fila[4]);
+            listaDTO.add(dto);
+        }
+
+        return listaDTO;
+    }
+
 }
