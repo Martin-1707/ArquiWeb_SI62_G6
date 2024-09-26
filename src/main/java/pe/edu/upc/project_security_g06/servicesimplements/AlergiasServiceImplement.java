@@ -13,12 +13,22 @@ public class AlergiasServiceImplement implements IdAlergiasService {
     private IAlergiasRepository aR;
 
     @Override
+    public void insert(Alergias ale) {
+        aR.save(ale);
+    }
+
+    @Override
     public List<Alergias> list() {
         return aR.findAll();
     }
 
     @Override
-    public void insert(Alergias ale) {
-        aR.save(ale);
+    public void update(Alergias alergias) {
+        aR.save(alergias);
+    }
+
+    @Override
+    public void delete(int id) {
+        aR.deleteById(id);
     }
 }
