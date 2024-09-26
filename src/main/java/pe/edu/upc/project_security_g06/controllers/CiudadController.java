@@ -3,7 +3,9 @@ package pe.edu.upc.project_security_g06.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.project_security_g06.dtos.AlergiasDTO;
 import pe.edu.upc.project_security_g06.dtos.CiudadDTO;
+import pe.edu.upc.project_security_g06.entities.Alergias;
 import pe.edu.upc.project_security_g06.entities.Ciudad;
 import pe.edu.upc.project_security_g06.servicesinterfaces.ICiudadService;
 
@@ -29,5 +31,15 @@ public class CiudadController {
             ModelMapper m = new ModelMapper();
             return m.map(x, CiudadDTO.class);
         }).collect(Collectors.toList());
+    }
+    @PutMapping
+    public void modificar(@RequestBody CiudadDTO dto){
+        ModelMapper m=new ModelMapper();
+        Ciudad d=m.map(dto,Ciudad.class);
+        cS.update(d);
+    }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+        cS.delete(id);
     }
 }
