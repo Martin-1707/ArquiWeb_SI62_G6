@@ -44,5 +44,11 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             "WHERE u.id_usario = hc.id_usario", nativeQuery = true)
     List<String[]> findInformacionClinicaByUsuarioId(Long idUsuario);
 
+    @Query(value = "SELECT u.us_nombre, u.us_apellido, COUNT(d.Idispositivo) AS cantidad_dispositivos " +
+            "FROM users u " +
+            "LEFT JOIN dispositivo d ON u.id_usario = d.id_usario " +
+            "GROUP BY u.us_nombre, u.us_apellido", nativeQuery = true)
+    List<String[]> findCantidadDispositivosPorUsuario();
+
 
 }
