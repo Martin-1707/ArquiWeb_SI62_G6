@@ -30,4 +30,15 @@ public class DistritoController {
             return m.map(x,DistritoDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @PutMapping
+    public void modificar(@RequestBody DistritoDTO dto){
+        ModelMapper m=new ModelMapper();
+        Distrito d=m.map(dto,Distrito.class);
+        dS.update(d);
+    }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+        dS.delete(id);
+    }
 }

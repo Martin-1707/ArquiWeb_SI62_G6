@@ -17,17 +17,28 @@ public class EnfermedadesController {
     @Autowired
     private IdEnfermedadService eS;
 
+    @PostMapping
+    public void registrar(@RequestBody EnfermedadesDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Enfermedades d = m.map(dto, Enfermedades.class);
+        eS.insert(d);
+    }
+
     @GetMapping
     public List<EnfermedadesDTO> listar(){
-        return eS.listarEnfermedades().stream().map(x->{
+        return eS.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
             return m.map(x,EnfermedadesDTO.class);
         }).collect(Collectors.toList());
     }
-    @PostMapping
-    public void insertar(@RequestBody EnfermedadesDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Enfermedades d = m.map(dto, Enfermedades.class);
-        eS.insert(d);
+    @PutMapping
+    public void modificar(@RequestBody EnfermedadesDTO dto){
+        ModelMapper m=new ModelMapper();
+        Enfermedades d=m.map(dto,Enfermedades.class);
+        eS.update(d);
+    }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+        eS.delete(id);
     }
 }

@@ -22,4 +22,14 @@ public class DistritoServiceImplement implements IDistritoService {
     public List<Distrito> list() {
         return dR.findAll();
     }
+
+    @Override
+    public void update(Distrito distrito) {
+        dR.save(distrito);
+    }
+
+    @Override
+    public void delete(int id) {
+        dR.deleteById(id);
+    }
 }
