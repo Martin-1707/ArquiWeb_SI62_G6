@@ -3,8 +3,10 @@ package pe.edu.upc.project_security_g06.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.project_security_g06.dtos.CiudadDTO;
 import pe.edu.upc.project_security_g06.dtos.Contacto_AutoridadesDTO;
 import pe.edu.upc.project_security_g06.dtos.Contacto_EmergenciaDTO;
+import pe.edu.upc.project_security_g06.entities.Ciudad;
 import pe.edu.upc.project_security_g06.entities.Contacto_Autoridades;
 import pe.edu.upc.project_security_g06.entities.Contacto_Emergencia;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IContacAutoridadesService;
@@ -19,6 +21,13 @@ public class ContactoAutoridadesController {
     @Autowired
     private IContacAutoridadesService caS;
 
+    @PostMapping
+    public void insertar (@RequestBody Contacto_AutoridadesDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Contacto_Autoridades d = m.map(dto, Contacto_Autoridades.class);
+        caS.insert(d);
+    }
+
     @GetMapping
     public List<Contacto_AutoridadesDTO> listar() {
         return caS.list().stream().map(x -> {
@@ -27,11 +36,17 @@ public class ContactoAutoridadesController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping
-    public void insertar (@RequestBody Contacto_AutoridadesDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Contacto_Autoridades d = m.map(dto, Contacto_Autoridades.class);
-        caS.insert(d);
+    @PutMapping
+    public void modificar(@RequestBody Contacto_AutoridadesDTO dto){
+        ModelMapper m=new ModelMapper();
+        Contacto_Autoridades d=m.map(dto,Contacto_Autoridades.class);
+        caS.update(d);
     }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+        caS.delete(id);
+    }
+
 
 }

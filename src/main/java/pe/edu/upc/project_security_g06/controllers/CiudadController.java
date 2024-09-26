@@ -30,12 +30,14 @@ public class CiudadController {
             return m.map(x, CiudadDTO.class);
         }).collect(Collectors.toList());
     }
+
     @PutMapping
     public void modificar(@RequestBody CiudadDTO dto){
         ModelMapper m=new ModelMapper();
         Ciudad d=m.map(dto,Ciudad.class);
         cS.update(d);
     }
+
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
         cS.delete(id);
