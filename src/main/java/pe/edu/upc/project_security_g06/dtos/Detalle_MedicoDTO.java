@@ -7,9 +7,9 @@ import pe.edu.upc.project_security_g06.entities.Historial_Clinico;
 
 public class Detalle_MedicoDTO {
     private int IdDetalleMedico;
-    private Alergias ale;
-    private Enfermedades enfe;
-    private Historial_Clinico hisclinico;
+    private Alergias alergias;
+    private Enfermedades enfermedades;
+    private Historial_Clinico historialClinico;
 
     public int getIdDetalleMedico() {
         return IdDetalleMedico;
@@ -17,22 +17,23 @@ public class Detalle_MedicoDTO {
     public void setIdDetalleMedico(int IdDetalleMedico) {
         this.IdDetalleMedico = IdDetalleMedico;
     }
-    public Alergias getAle() {
-        return ale;
+    public Alergias getAlergias() {
+        return alergias;
     }
-    public void setAle(Alergias ale) {
-        this.ale = ale;
+    public void setAlergias(Alergias alergias) {
+        this.alergias = alergias;
     }
-    public Enfermedades getEnfe() {
-        return enfe;
+    public Enfermedades getEnfermedades() {
+        return enfermedades;
     }
-    public void setEnfe(Enfermedades enfe) {
-        this.enfe = enfe;
+    public void setEnfermedades(Enfermedades enfermedades) {
+        this.enfermedades = enfermedades;
     }
-    public Historial_Clinico getHisclinico() {
-        return hisclinico;
+    public Historial_Clinico getHistorialClinico() {
+        return historialClinico;
     }
-    public void setHisclinico(Historial_Clinico hisclinico) {
-        this.hisclinico = hisclinico;
+    public void setHistorialClinico(Historial_Clinico historialClinico) {
+        this.historialClinico = historialClinico;
     }
 }
+
