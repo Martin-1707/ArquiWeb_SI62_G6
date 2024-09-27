@@ -11,7 +11,6 @@ import pe.edu.upc.project_security_g06.servicesinterfaces.IDispositivoService;
 
 @RestController
 @RequestMapping("/dispositivos")
-@PreAuthorize("hasAnyAuthority('DISPOSITIVO')")
 public class DispositivoController {
     @Autowired
     private IDispositivoService dS;

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.project_security_g06.dtos.UserDTO;
+import pe.edu.upc.project_security_g06.dtos.UsuarioContactosDTO;
 import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoRolDTO;
 import pe.edu.upc.project_security_g06.dtos.UsuarioHistorialClinicoDTO;
 import pe.edu.upc.project_security_g06.entities.Users;
@@ -72,6 +73,29 @@ public class UserController {
         }
         return listaDTO;
     }
+
+    @GetMapping
+    public List<UsuarioContactosDTO> ObtenerContactosEmergenciaPersonalesDeUsuario(@PathVariable("us_nombre") String us_nombre) {
+        List<String[]> resultados = uS.ObtenerContactosEmergenciaPersonalesDeUsuario(us_nombre);
+        ModelMapper m = new ModelMapper();
+        List<UsuarioContactosDTO> dtoList = resultados.stream()
+                .map(resultado -> {
+                    UsuarioContactosDTO dto = new UsuarioContactosDTO();
+                    dto.setIdUsario(Integer.parseInt(resultado[0]));
+                    dto.setUs_nombre(resultado[1]);
+                    dto.setUs_apellido(resultado[2]);
+                    dto.setNombre_dispositivo(resultado[3]);
+                    dto.setNombreContactoEmergencia(resultado[4]);
+                    dto.setTelefonoContactoEmergencia(resultado[5]);
+                    dto.setNombreContactoAutoridad(resultado[6]);
+                    dto.setTelefonoContactoAutoridad(resultado[7]);
+                    return dto;
+                })
+                .collect(Collectors.toList());
+
+        return dtoList;
+    }
+
 
     @GetMapping("/{idUsuario}/informacionclinica")
     public UsuarioHistorialClinicoDTO obtenerInformacionClinicaXusuario(@PathVariable("idUsuario") Integer id) {

@@ -45,5 +45,15 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             "WHERE u.id_usario = hc.id_usario;", nativeQuery = true)
     public List<String[]> findInformacionClinicaByUsuarioId(@Param("idUsuario") int idUsuario);
 
+    @Query(value = "SELECT u.id_usario, u.us_nombre , u.us_apellido, d.nombre_dispositivo, cq.nombre_contacto, cq.num_telefono_contacto, ca.nombre_contac_auto, ca.nume_telefono_contac_auto\n" +
+            "FROM dispositivo d\n" +
+            "JOIN users u \n" +
+            "ON u.id_usario = d.id_usario\n" +
+            "JOIN contacto_autoridades ca \n" +
+            "ON d.id_contac_auto = ca.id_contac_auto\n" +
+            "JOIN contacto_emergencia cq \n" +
+            "ON d.id_contacto_emergencia = cq.id_contacto;", nativeQuery = true)
+    public List<String[]>ObtenerContactosEmergenciaPersonalesDeUsuario(@Param("us_nombre") String us_nombre);
+
 
 }
