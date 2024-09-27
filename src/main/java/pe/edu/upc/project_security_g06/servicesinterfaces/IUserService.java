@@ -17,7 +17,15 @@ public interface IUserService {
 
     public List<String[]> obtenerUsuariosConDispositivosYRoles();
 
-    public Users obtenerInformacionClinicaPorUsuario(int idUsuario);
+    public List<String[]> obtenerInformacionClinicaPorUsuario(Long idUsuario);
+
+    public List<String[]> obtenerCantidadDispositivosPorUsuario();
+
+    public List<String[]> obtenerHistorialUbicacionPorUsuario(Long idUsuario);
+
+    public List<String[]> obtenerEnfermedadesPorUsuario(Long idUsuario);
+
+    public List<String[]> obtenerAlergiasPorUsuario(Long idUsuario);
 
     public List<String[]> ObtenerContactosEmergenciaPersonalesDeUsuario(String nombre);
 

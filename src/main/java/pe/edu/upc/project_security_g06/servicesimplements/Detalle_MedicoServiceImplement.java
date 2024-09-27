@@ -7,6 +7,7 @@ import pe.edu.upc.project_security_g06.repositories.IDetalle_MedicoRepository;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IDetalle_MedicoService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class Detalle_MedicoServiceImplement implements IDetalle_MedicoService {
@@ -16,5 +17,10 @@ public class Detalle_MedicoServiceImplement implements IDetalle_MedicoService {
     @Override
     public void insert(Detalle_Medico detmed) {
         dmR.save(detmed);
+    }
+
+    @Override
+    public List<Detalle_Medico> list() {
+        return dmR.findAll();
     }
 }

@@ -7,7 +7,6 @@ public class Alergias {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IdAlergias;
-
     @Column(name = "nombre_alergias",nullable = false,length = 50)
     private String nombre_alergias;
     @Column(name = "descripcion_alergias",nullable = false,length = 250)

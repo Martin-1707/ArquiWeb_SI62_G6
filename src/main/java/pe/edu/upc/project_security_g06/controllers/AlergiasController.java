@@ -17,6 +17,13 @@ public class AlergiasController {
     @Autowired
     private IdAlergiasService aS;
 
+    @PostMapping
+    public void insertar(@RequestBody AlergiasDTO dto){
+        ModelMapper m=new ModelMapper();
+        Alergias d=m.map(dto,Alergias.class);
+        aS.insert(d);
+    }
+
     @GetMapping
     public List<AlergiasDTO> listar() {
         return aS.list().stream().map(x->{
@@ -24,10 +31,16 @@ public class AlergiasController {
             return m.map(x,AlergiasDTO.class);
         }).collect(Collectors.toList());
     }
-    @PostMapping
-    public void insertar(@RequestBody AlergiasDTO dto){
+    @PutMapping
+    public void modificar(@RequestBody AlergiasDTO dto){
         ModelMapper m=new ModelMapper();
         Alergias d=m.map(dto,Alergias.class);
-        aS.insert(d);
+        aS.update(d);
     }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+        aS.delete(id);
+    }
+
+
 }

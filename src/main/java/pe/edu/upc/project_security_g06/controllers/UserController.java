@@ -8,9 +8,12 @@ import pe.edu.upc.project_security_g06.dtos.UserDTO;
 import pe.edu.upc.project_security_g06.dtos.UsuarioContactosDTO;
 import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoRolDTO;
 import pe.edu.upc.project_security_g06.dtos.UsuarioHistorialClinicoDTO;
+import pe.edu.upc.project_security_g06.dtos.*;
 import pe.edu.upc.project_security_g06.entities.Users;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IUserService;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -73,7 +76,6 @@ public class UserController {
         }
         return listaDTO;
     }
-
     @GetMapping("/buscarcontactospornombre/{us_nombre}")
     public List<UsuarioContactosDTO> buscar(@RequestParam("us_nombre") String nombre) {
         List<String[]> lista=uS.ObtenerContactosEmergenciaPersonalesDeUsuario(nombre);
@@ -92,13 +94,91 @@ public class UserController {
         }
         return listaDTO;
     }
+    @GetMapping("/{idUsuario}/informacion-clinica")
+    public List<UsuarioHistorialClinicoDTO> obtenerInformacionClinicaPorUsuario(@PathVariable Long idUsuario) {
+        List<String[]> resultados = uS.obtenerInformacionClinicaPorUsuario(idUsuario);
+        List<UsuarioHistorialClinicoDTO> listaDTO = new ArrayList<>();
 
+        for (String[] fila : resultados) {
+            UsuarioHistorialClinicoDTO dto = new UsuarioHistorialClinicoDTO();
+            dto.setNombreUsuario(fila[0]);
+            dto.setApellidoUsuario(fila[1]);
+            dto.setNombreAlergia(fila[2]);
+            dto.setNombreEnfermedad(fila[3]);
+            listaDTO.add(dto);
+        }
 
-    @GetMapping("/{idUsuario}/informacionclinica")
-    public UsuarioHistorialClinicoDTO obtenerInformacionClinicaXusuario(@PathVariable("idUsuario") Integer id) {
-        ModelMapper m = new ModelMapper();
-        UsuarioHistorialClinicoDTO dto = m.map(uS.obtenerInformacionClinicaPorUsuario(id), UsuarioHistorialClinicoDTO.class);
-        return dto;
+        return listaDTO;
+    }
+
+    @GetMapping("/cantidad-dispositivos")
+    public List<UsuarioDispositivoCountDTO> obtenerCantidadDispositivosPorUsuario() {
+        List<String[]> resultados = uS.obtenerCantidadDispositivosPorUsuario();
+        List<UsuarioDispositivoCountDTO> listaDTO = new ArrayList<>();
+
+        for (String[] fila : resultados) {
+            UsuarioDispositivoCountDTO dto = new UsuarioDispositivoCountDTO();
+            dto.setNombreUsuario(fila[0]);
+            dto.setApellidoUsuario(fila[1]);
+            dto.setCantidadDispositivos(Long.parseLong(fila[2]));
+            listaDTO.add(dto);
+        }
+
+        return listaDTO;
+    }
+
+    @GetMapping("/{idUsuario}/historial-ubicaciones")
+    public List<UsuarioHistorialUbicacionDTO> obtenerHistorialUbicacionPorUsuario(@PathVariable Long idUsuario) {
+        List<String[]> resultados = uS.obtenerHistorialUbicacionPorUsuario(idUsuario);
+        List<UsuarioHistorialUbicacionDTO> listaDTO = new ArrayList<>();
+
+        for (String[] fila : resultados) {
+            UsuarioHistorialUbicacionDTO dto = new UsuarioHistorialUbicacionDTO();
+            dto.setNombreUsuario(fila[0]);
+            dto.setApellidoUsuario(fila[1]);
+            dto.setFecha(LocalDate.parse(fila[2]));
+            dto.setHora(LocalTime.parse(fila[3]));
+            dto.setDistrito(fila[4]);
+            listaDTO.add(dto);
+        }
+
+        return listaDTO;
+    }
+
+    @GetMapping("/{idUsuario}/enfermedades")
+    public List<UsuarioEnfermedadDTO> obtenerEnfermedadesPorUsuario(@PathVariable Long idUsuario) {
+        List<String[]> resultados = uS.obtenerEnfermedadesPorUsuario(idUsuario);
+        List<UsuarioEnfermedadDTO> listaDTO = new ArrayList<>();
+
+        for (String[] fila : resultados) {
+            UsuarioEnfermedadDTO dto = new UsuarioEnfermedadDTO();
+            dto.setNombreUsuario(fila[0]);
+            dto.setApellidoUsuario(fila[1]);
+            dto.setNombreEnfermedad(fila[2]);
+            dto.setDescripcionEnfermedad(fila[3]);
+            dto.setTipoEnfermedad(fila[4]);
+            listaDTO.add(dto);
+        }
+
+        return listaDTO;
+    }
+
+    @GetMapping("/{idUsuario}/alergias")
+    public List<UsuarioAlergiaDTO> obtenerAlergiasPorUsuario(@PathVariable Long idUsuario) {
+        List<String[]> resultados = uS.obtenerAlergiasPorUsuario(idUsuario);
+        List<UsuarioAlergiaDTO> listaDTO = new ArrayList<>();
+
+        for (String[] fila : resultados) {
+            UsuarioAlergiaDTO dto = new UsuarioAlergiaDTO();
+            dto.setNombreUsuario(fila[0]);
+            dto.setApellidoUsuario(fila[1]);
+            dto.setNombreAlergia(fila[2]);
+            dto.setDescripcionAlergia(fila[3]);
+            dto.setCausaAlergia(fila[4]);
+            listaDTO.add(dto);
+        }
+
+        return listaDTO;
     }
 
 }
