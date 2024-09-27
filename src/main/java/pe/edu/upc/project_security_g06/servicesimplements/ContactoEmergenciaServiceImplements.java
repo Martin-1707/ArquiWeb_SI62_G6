@@ -21,4 +21,9 @@ public class ContactoEmergenciaServiceImplements implements IContacEmergenciaSer
     public List<Contacto_Emergencia> list() {
         return ceR.findAll();
     }
+
+    @Override
+    public List<String[]> listaCantidadRelacionesContacto(String relacion_contacto) {
+        return ceR.findContacto_EmergenciaByRelacion_contacto(relacion_contacto);
+    }
 }
