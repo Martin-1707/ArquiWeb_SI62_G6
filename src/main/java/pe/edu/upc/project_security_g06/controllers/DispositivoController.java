@@ -15,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/dispositivos")
-@PreAuthorize("hasAnyAuthority('DISPOSITIVO')")
 public class DispositivoController {
     @Autowired
     private IDispositivoService dS;
@@ -34,9 +33,9 @@ public class DispositivoController {
         return dto;
     }
 
-    @GetMapping("/{API}/dispositivos")
-    public List<DispositivoContactoAutoridadDTO> obtenerdetalledispositivoycontactoautoridad(@PathVariable Integer idDispositivo) {
-        List<String[]> resultados = dS.obtenerdetalledispositivoycontactoautoridad(idDispositivo);
+    @GetMapping("/contacAuto/{id}")
+    public List<DispositivoContactoAutoridadDTO> obtenerdetalledispositivoycontactoautoridad(@PathVariable("id") Integer id) {
+        List<String[]> resultados = dS.obtenerdetalledispositivoycontactoautoridad(id);
         List<DispositivoContactoAutoridadDTO> listaDTO = new ArrayList<>();
 
         for (String[] fila : resultados) {
