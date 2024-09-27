@@ -6,6 +6,8 @@ import pe.edu.upc.project_security_g06.entities.Dispositivo;
 import pe.edu.upc.project_security_g06.repositories.IDispositivoRepository;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IDispositivoService;
 
+import java.util.List;
+
 @Service
 public class DispositivoServiceImplement implements IDispositivoService {
 
@@ -20,5 +22,10 @@ public class DispositivoServiceImplement implements IDispositivoService {
     @Override
     public Dispositivo list(int Idispositivo) {
         return dR.findById(Idispositivo).orElse(new Dispositivo());
+    }
+
+    @Override
+    public List<String[]> obtenerdetalledispositivoycontactoautoridad(Integer idDispositivo) {
+        return dR.findDetalleDispositivoContactoAutoridad(idDispositivo);
     }
 }
