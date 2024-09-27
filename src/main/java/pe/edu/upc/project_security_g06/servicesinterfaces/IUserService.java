@@ -19,4 +19,6 @@ public interface IUserService {
 
     public Users obtenerInformacionClinicaPorUsuario(int idUsuario);
 
+    public List<String[]> ObtenerContactosEmergenciaPersonalesDeUsuario(String nombre);
+
 }

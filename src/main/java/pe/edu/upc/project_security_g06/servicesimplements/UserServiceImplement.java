@@ -44,5 +44,10 @@ public class UserServiceImplement implements IUserService {
         return null;
     }
 
+    @Override
+    public List<String[]> ObtenerContactosEmergenciaPersonalesDeUsuario(String nombre) {
+        return uR.findContactosByUsuario(nombre);
+    }
+
 
 }

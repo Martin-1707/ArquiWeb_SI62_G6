@@ -52,8 +52,9 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             "JOIN contacto_autoridades ca \n" +
             "ON d.id_contac_auto = ca.id_contac_auto\n" +
             "JOIN contacto_emergencia cq \n" +
-            "ON d.id_contacto_emergencia = cq.id_contacto;", nativeQuery = true)
-    public List<String[]>ObtenerContactosEmergenciaPersonalesDeUsuario(@Param("us_nombre") String us_nombre);
+            "ON d.id_contacto_emergencia = cq.id_contacto\n" +
+            "where u.us_nombre like %:nombre%", nativeQuery = true)
+    public List<String[]> findContactosByUsuario(@Param("nombre") String nombre);
 
 
 }
