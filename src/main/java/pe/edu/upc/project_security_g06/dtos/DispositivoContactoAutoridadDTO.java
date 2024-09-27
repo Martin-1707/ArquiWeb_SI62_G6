@@ -1,6 +1,7 @@
 package pe.edu.upc.project_security_g06.dtos;
 
 public class DispositivoContactoAutoridadDTO {
+
     private String NombreDispositivo;
     private String NombreAutoridad;
     private int telefonoAutoridad;
@@ -28,4 +29,5 @@ public class DispositivoContactoAutoridadDTO {
     public void setTelefonoAutoridad(int telefonoAutoridad) {
         this.telefonoAutoridad = telefonoAutoridad;
     }
+
 }
