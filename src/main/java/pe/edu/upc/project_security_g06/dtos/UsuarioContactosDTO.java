@@ -7,6 +7,7 @@ public class UsuarioContactosDTO {
     private String nombre_dispositivo;
     private String nombre_contacto;
     private int num_telefono_contacto;
+    private String nombre_contacto_auto;
     public int numeTelefono_contac_Auto;
 
 
@@ -57,11 +58,12 @@ public class UsuarioContactosDTO {
     public void setNum_telefono_contacto(int num_telefono_contacto) {
         this.num_telefono_contacto = num_telefono_contacto;
     }
-
+    public String getNombre_contacto_auto() {return nombre_contacto_auto;}
+    public void setNombre_contacto_auto(String nombre_contacto_auto) {this.nombre_contacto_auto = nombre_contacto_auto;}
     public int getNumeTelefono_contac_Auto() {
         return numeTelefono_contac_Auto;
     }
-    public void setNumeTelefono_contac_Auto() {
+    public void setNumeTelefono_contac_Auto(int numeTelefono_contac_Auto) {
         this.numeTelefono_contac_Auto = numeTelefono_contac_Auto;
     }
 }

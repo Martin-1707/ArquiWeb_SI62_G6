@@ -74,12 +74,23 @@ public class UserController {
         return listaDTO;
     }
 
-    @GetMapping("/buscarcontactospornombre")
-    public List<UsuarioContactosDTO> buscar(@RequestParam String nombre) {
-        return uS.ObtenerContactosEmergenciaPersonalesDeUsuario(nombre).stream().map(x->{
-            ModelMapper m=new ModelMapper();
-            return m.map(x,UsuarioContactosDTO.class);
-        }).collect(Collectors.toList());
+    @GetMapping("/buscarcontactospornombre/{us_nombre}")
+    public List<UsuarioContactosDTO> buscar(@RequestParam("us_nombre") String nombre) {
+        List<String[]> lista=uS.ObtenerContactosEmergenciaPersonalesDeUsuario(nombre);
+        List<UsuarioContactosDTO>listaDTO=new ArrayList<>();
+        for(String[] columna:lista){
+            UsuarioContactosDTO dto=new UsuarioContactosDTO();
+            dto.setIdUsario(Integer.parseInt(columna[0]));
+            dto.setUs_nombre(columna[1]);
+            dto.setUs_apellido(columna[2]);
+            dto.setNombre_dispositivo(columna[3]);
+            dto.setNombre_contacto(columna[4]);
+            dto.setNum_telefono_contacto(Integer.parseInt(columna[5]));
+            dto.setNombre_contacto_auto(columna[6]);
+            dto.setNumeTelefono_contac_Auto(Integer.parseInt(columna[7]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
     }
 
 
