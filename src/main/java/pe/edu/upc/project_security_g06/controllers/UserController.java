@@ -96,6 +96,17 @@ public class UserController {
         List<String[]> resultados = uS.obtenerInformacionClinicaPorUsuario(idUsuario);
         List<UsuarioHistorialClinicoDTO> listaDTO = new ArrayList<>();
 
+        for (String[] fila : resultados) {
+            UsuarioHistorialClinicoDTO dto = new UsuarioHistorialClinicoDTO();
+            dto.setNombreUsuario(fila[0]);
+            dto.setApellidoUsuario(fila[1]);
+            dto.setNombreAlergia(fila[2]);
+            dto.setNombreEnfermedad(fila[3]);
+            listaDTO.add(dto);
+        }
+
+        return listaDTO;
+    }
 
     @GetMapping("/CantidadAlerEnferXuser/{us_nombre}")
     public List<UsuarioConteoAlerEnferDTO>findConteoAlergiaYtipoEnfermedadXusuario(@RequestParam String name){

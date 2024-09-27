@@ -58,7 +58,7 @@ public class UserServiceImplement implements IUserService {
     @Override
     public List<String[]> obtenerCantidadDispositivosPorUsuario() {
         return uR.findCantidadDispositivosPorUsuario();
-
+    }
 
     @Override
     public List<String[]> obtenerHistorialUbicacionPorUsuario(Long idUsuario) {
