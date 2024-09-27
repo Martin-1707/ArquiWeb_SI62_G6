@@ -41,6 +41,12 @@ public class UserServiceImplement implements IUserService {
 
 
     @Override
+    public List<String[]> findConteoAlergiaYtipoEnfermedadXusuario(String nombre) {
+        return uR.findConteoAlergiaYtipoEnfermedadXusuario(nombre);
+    }
+
+
+    @Override
     public List<String[]> ObtenerContactosEmergenciaPersonalesDeUsuario(String nombre) {
         return uR.findContactosByUsuario(nombre);
     }
@@ -52,7 +58,7 @@ public class UserServiceImplement implements IUserService {
     @Override
     public List<String[]> obtenerCantidadDispositivosPorUsuario() {
         return uR.findCantidadDispositivosPorUsuario();
-    }
+
 
     @Override
     public List<String[]> obtenerHistorialUbicacionPorUsuario(Long idUsuario) {

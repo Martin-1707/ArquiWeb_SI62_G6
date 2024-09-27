@@ -4,10 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.project_security_g06.dtos.UserDTO;
-import pe.edu.upc.project_security_g06.dtos.UsuarioContactosDTO;
-import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoRolDTO;
-import pe.edu.upc.project_security_g06.dtos.UsuarioHistorialClinicoDTO;
+
 import pe.edu.upc.project_security_g06.dtos.*;
 import pe.edu.upc.project_security_g06.entities.Users;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IUserService;
@@ -99,15 +96,19 @@ public class UserController {
         List<String[]> resultados = uS.obtenerInformacionClinicaPorUsuario(idUsuario);
         List<UsuarioHistorialClinicoDTO> listaDTO = new ArrayList<>();
 
-        for (String[] fila : resultados) {
-            UsuarioHistorialClinicoDTO dto = new UsuarioHistorialClinicoDTO();
-            dto.setNombreUsuario(fila[0]);
-            dto.setApellidoUsuario(fila[1]);
-            dto.setNombreAlergia(fila[2]);
-            dto.setNombreEnfermedad(fila[3]);
+
+    @GetMapping("/CantidadAlerEnferXuser/{us_nombre}")
+    public List<UsuarioConteoAlerEnferDTO>findConteoAlergiaYtipoEnfermedadXusuario(@RequestParam String name){
+        List<String[]> lista=uS.findConteoAlergiaYtipoEnfermedadXusuario(name);
+        List<UsuarioConteoAlerEnferDTO>listaDTO=new ArrayList<>();
+        for(String[] columna:lista){
+            UsuarioConteoAlerEnferDTO dto=new UsuarioConteoAlerEnferDTO();
+            dto.setUsuario(columna[0]);
+            dto.setCantidad_alergias(Integer.parseInt(columna[1]));
+            dto.setCantidad_enfermedades(Integer.parseInt(columna[2]));
+            dto.setTipos_enfermedades(columna[3]);
             listaDTO.add(dto);
         }
-
         return listaDTO;
     }
 
