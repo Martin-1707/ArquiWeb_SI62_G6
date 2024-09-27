@@ -4,10 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.project_security_g06.dtos.UserDTO;
-import pe.edu.upc.project_security_g06.dtos.UsuarioConteoAlerEnferDTO;
-import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoRolDTO;
-import pe.edu.upc.project_security_g06.dtos.UsuarioHistorialClinicoDTO;
+import pe.edu.upc.project_security_g06.dtos.*;
 import pe.edu.upc.project_security_g06.entities.Users;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IUserService;
 
