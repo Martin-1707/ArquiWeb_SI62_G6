@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.project_security_g06.dtos.UserDTO;
+import pe.edu.upc.project_security_g06.dtos.UsuarioConteoAlerEnferDTO;
 import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoRolDTO;
 import pe.edu.upc.project_security_g06.dtos.UsuarioHistorialClinicoDTO;
 import pe.edu.upc.project_security_g06.entities.Users;
@@ -68,6 +69,21 @@ public class UserController {
             dto.setApellidoUsuario(columna[1]);
             dto.setNombreDispositivo(columna[2]);
             dto.setRolUsuario(columna[3]);
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
+
+    @GetMapping("/CantidadAlerEnferXuser/{us_nombre}")
+    public List<UsuarioConteoAlerEnferDTO>findConteoAlergiaYtipoEnfermedadXusuario(@RequestParam String name){
+        List<String[]> lista=uS.findConteoAlergiaYtipoEnfermedadXusuario(name);
+        List<UsuarioConteoAlerEnferDTO>listaDTO=new ArrayList<>();
+        for(String[] columna:lista){
+            UsuarioConteoAlerEnferDTO dto=new UsuarioConteoAlerEnferDTO();
+            dto.setUsuario(columna[0]);
+            dto.setCantidad_alergias(Integer.parseInt(columna[1]));
+            dto.setCantidad_enfermedades(Integer.parseInt(columna[2]));
+            dto.setTipos_enfermedades(columna[3]);
             listaDTO.add(dto);
         }
         return listaDTO;
