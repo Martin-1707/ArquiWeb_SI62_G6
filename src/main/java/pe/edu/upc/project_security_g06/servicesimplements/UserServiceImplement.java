@@ -39,10 +39,12 @@ public class UserServiceImplement implements IUserService {
         return uR.findUsuariosWithDevicesAndRoles();
     }
 
+
     @Override
     public List<String[]> findConteoAlergiaYtipoEnfermedadXusuario(String nombre) {
         return uR.findConteoAlergiaYtipoEnfermedadXusuario(nombre);
     }
+
 
     @Override
     public List<String[]> ObtenerContactosEmergenciaPersonalesDeUsuario(String nombre) {
