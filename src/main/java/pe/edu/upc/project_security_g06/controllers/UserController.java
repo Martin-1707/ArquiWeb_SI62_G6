@@ -4,6 +4,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.project_security_g06.dtos.UserDTO;
+import pe.edu.upc.project_security_g06.dtos.UsuarioContactosDTO;
+import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoRolDTO;
+import pe.edu.upc.project_security_g06.dtos.UsuarioHistorialClinicoDTO;
 import pe.edu.upc.project_security_g06.dtos.*;
 import pe.edu.upc.project_security_g06.entities.Users;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IUserService;
@@ -72,7 +76,24 @@ public class UserController {
         }
         return listaDTO;
     }
-
+    @GetMapping("/buscarcontactospornombre/{us_nombre}")
+    public List<UsuarioContactosDTO> buscar(@RequestParam("us_nombre") String nombre) {
+        List<String[]> lista=uS.ObtenerContactosEmergenciaPersonalesDeUsuario(nombre);
+        List<UsuarioContactosDTO>listaDTO=new ArrayList<>();
+        for(String[] columna:lista){
+            UsuarioContactosDTO dto=new UsuarioContactosDTO();
+            dto.setIdUsario(Integer.parseInt(columna[0]));
+            dto.setUs_nombre(columna[1]);
+            dto.setUs_apellido(columna[2]);
+            dto.setNombre_dispositivo(columna[3]);
+            dto.setNombre_contacto(columna[4]);
+            dto.setNum_telefono_contacto(Integer.parseInt(columna[5]));
+            dto.setNombre_contacto_auto(columna[6]);
+            dto.setNumeTelefono_contac_Auto(Integer.parseInt(columna[7]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
     @GetMapping("/{idUsuario}/informacion-clinica")
     public List<UsuarioHistorialClinicoDTO> obtenerInformacionClinicaPorUsuario(@PathVariable Long idUsuario) {
         List<String[]> resultados = uS.obtenerInformacionClinicaPorUsuario(idUsuario);

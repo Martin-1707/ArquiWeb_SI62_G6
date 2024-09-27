@@ -40,6 +40,16 @@ public class UserServiceImplement implements IUserService {
     }
 
     @Override
+
+    public Users obtenerInformacionClinicaPorUsuario(int idUsuario) {
+        return null;
+    }
+
+    @Override
+    public List<String[]> ObtenerContactosEmergenciaPersonalesDeUsuario(String nombre) {
+        return uR.findContactosByUsuario(nombre);
+    }
+
     public List<String[]> obtenerInformacionClinicaPorUsuario(Long idUsuario) {
         return uR.findInformacionClinicaByUsuarioId(idUsuario);
     }

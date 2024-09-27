@@ -27,4 +27,8 @@ public interface IUserService {
 
     public List<String[]> obtenerAlergiasPorUsuario(Long idUsuario);
 
+    public List<String[]> ObtenerContactosEmergenciaPersonalesDeUsuario(String nombre);
+
+
+
 }

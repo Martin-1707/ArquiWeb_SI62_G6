@@ -50,6 +50,18 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             "GROUP BY u.us_nombre, u.us_apellido", nativeQuery = true)
     List<String[]> findCantidadDispositivosPorUsuario();
 
+
+    @Query(value = "SELECT u.id_usario, u.us_nombre , u.us_apellido, d.nombre_dispositivo, cq.nombre_contacto, cq.num_telefono_contacto, ca.nombre_contac_auto, ca.nume_telefono_contac_auto\n" +
+            "FROM dispositivo d\n" +
+            "JOIN users u \n" +
+            "ON u.id_usario = d.id_usario\n" +
+            "JOIN contacto_autoridades ca \n" +
+            "ON d.id_contac_auto = ca.id_contac_auto\n" +
+            "JOIN contacto_emergencia cq \n" +
+            "ON d.id_contacto_emergencia = cq.id_contacto\n" +
+            "where u.us_nombre like %:nombre%", nativeQuery = true)
+    public List<String[]> findContactosByUsuario(@Param("nombre") String nombre);
+
     @Query(value = "SELECT u.us_nombre, u.us_apellido, hu.fecha, hu.hora, dr.nombre_distrito" +
             " FROM users u " +
             "JOIN dispositivo d ON u.id_usario = d.id_usario " +
@@ -74,5 +86,6 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             "JOIN alergias a ON dm.id_alergias = a.id_alergias " +
             "WHERE u.id_usario = hc.id_usario", nativeQuery = true)
     List<String[]> findAlergiasByUsuarioId(Long idUsuario);
+
 
 }
