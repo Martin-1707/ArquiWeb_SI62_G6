@@ -35,15 +35,57 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             " ON u.id_usario = d.id_usario",nativeQuery = true)
     public List<String[]> findUsuariosWithDevicesAndRoles();
 
+    @Query(value = "SELECT u.us_nombre, u.us_apellido, a.nombre_alergias, e.nombre_enfermedad " +
+            "FROM users u " +
+            "JOIN historial_clinico hc ON u.id_usario = hc.id_usario " +
+            "JOIN detalle_medico dm ON hc.id_historial_clinico = dm.id_historial_clinico " +
+            "JOIN alergias a ON dm.id_alergias = a.id_alergias " +
+            "JOIN enfermedades e ON dm.id_enfermedades = e.id_enfermedades " +
+            "WHERE u.id_usario = hc.id_usario", nativeQuery = true)
+    List<String[]> findInformacionClinicaByUsuarioId(Long idUsuario);
 
-    @Query(value = "SELECT u.us_nombre, u.us_apellido, a.nombre_alergias, e.nombre_enfermedad\n" +
-            "FROM users u\n" +
-            "JOIN historial_clinico hc ON u.id_usario = hc.id_usario\n" +
-            "JOIN detalle_medico dm ON hc.id_historial_clinico = dm.id_historial_clinico\n" +
-            "JOIN alergias a ON dm.id_alergias = a.id_alergias\n" +
-            "JOIN enfermedades e ON dm.id_enfermedades = e.id_enfermedades\n" +
-            "WHERE u.id_usario = hc.id_usario;", nativeQuery = true)
-    public List<String[]> findInformacionClinicaByUsuarioId(@Param("idUsuario") int idUsuario);
+    @Query(value = "SELECT u.us_nombre, u.us_apellido, COUNT(d.Idispositivo) AS cantidad_dispositivos " +
+            "FROM users u " +
+            "LEFT JOIN dispositivo d ON u.id_usario = d.id_usario " +
+            "GROUP BY u.us_nombre, u.us_apellido", nativeQuery = true)
+    List<String[]> findCantidadDispositivosPorUsuario();
+
+
+    @Query(value = "SELECT u.id_usario, u.us_nombre , u.us_apellido, d.nombre_dispositivo, cq.nombre_contacto, cq.num_telefono_contacto, ca.nombre_contac_auto, ca.nume_telefono_contac_auto\n" +
+            "FROM dispositivo d\n" +
+            "JOIN users u \n" +
+            "ON u.id_usario = d.id_usario\n" +
+            "JOIN contacto_autoridades ca \n" +
+            "ON d.id_contac_auto = ca.id_contac_auto\n" +
+            "JOIN contacto_emergencia cq \n" +
+            "ON d.id_contacto_emergencia = cq.id_contacto\n" +
+            "where u.us_nombre like %:nombre%", nativeQuery = true)
+    public List<String[]> findContactosByUsuario(@Param("nombre") String nombre);
+
+    @Query(value = "SELECT u.us_nombre, u.us_apellido, hu.fecha, hu.hora, dr.nombre_distrito" +
+            " FROM users u " +
+            "JOIN dispositivo d ON u.id_usario = d.id_usario " +
+            "JOIN historial_ubicacion hu ON d.Idispositivo = hu.Idispositivo " +
+            "JOIN ubicacion ub ON hu.Id_Ubicacion = ub.Id_Ubicacion " +
+            "JOIN distrito dr ON dr.id_Distrito = ub.id_Distrito " +
+            "WHERE u.id_usario = d.id_usario", nativeQuery = true)
+    List<String[]> findHistorialUbicacionByUsuarioId(Long idUsuario);
+
+    @Query(value = "SELECT u.us_nombre, u.us_apellido, e.nombre_enfermedad, e.descripcion_enfermedad, e.tipo_enfermedad " +
+            "FROM users u " +
+            "JOIN historial_clinico hc ON u.id_usario = hc.id_usario " +
+            "JOIN detalle_medico dm ON hc.id_historial_clinico = dm.id_historial_clinico " +
+            "JOIN enfermedades e ON dm.id_enfermedades = e.id_enfermedades " +
+            "WHERE u.id_usario = hc.id_usario", nativeQuery = true)
+    List<String[]> findEnfermedadesByUsuarioId(Long idUsuario);
+
+    @Query(value = "SELECT u.us_nombre, u.us_apellido, a.nombre_alergias, a.descripcion_alergias, a.causa_alergias " +
+            "FROM users u " +
+            "JOIN historial_clinico hc ON u.id_usario = hc.id_usario " +
+            "JOIN detalle_medico dm ON hc.id_usario = dm.id_historial_clinico " +
+            "JOIN alergias a ON dm.id_alergias = a.id_alergias " +
+            "WHERE u.id_usario = hc.id_usario", nativeQuery = true)
+    List<String[]> findAlergiasByUsuarioId(Long idUsuario);
 
     @Query(value = "SELECT CONCAT(u.us_nombre, ' ' ,u.us_apellido) AS Usuario,\n" +
             "       COUNT(DISTINCT a.id_alergias) AS cantidad_alergias,\n" +

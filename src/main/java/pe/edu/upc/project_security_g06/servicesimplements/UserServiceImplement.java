@@ -44,5 +44,32 @@ public class UserServiceImplement implements IUserService {
         return uR.findConteoAlergiaYtipoEnfermedadXusuario(nombre);
     }
 
+    @Override
+    public List<String[]> ObtenerContactosEmergenciaPersonalesDeUsuario(String nombre) {
+        return uR.findContactosByUsuario(nombre);
+    }
 
+    public List<String[]> obtenerInformacionClinicaPorUsuario(Long idUsuario) {
+        return uR.findInformacionClinicaByUsuarioId(idUsuario);
+    }
+
+    @Override
+    public List<String[]> obtenerCantidadDispositivosPorUsuario() {
+        return uR.findCantidadDispositivosPorUsuario();
+
+
+    @Override
+    public List<String[]> obtenerHistorialUbicacionPorUsuario(Long idUsuario) {
+        return uR.findHistorialUbicacionByUsuarioId(idUsuario);
+    }
+
+    @Override
+    public List<String[]> obtenerEnfermedadesPorUsuario(Long idUsuario) {
+        return uR.findEnfermedadesByUsuarioId(idUsuario);
+    }
+
+    @Override
+    public List<String[]> obtenerAlergiasPorUsuario(Long idUsuario) {
+        return uR.findAlergiasByUsuarioId(idUsuario);
+    }
 }

@@ -10,6 +10,7 @@ public interface IContacEmergenciaService {
     public void insert(Contacto_Emergencia contactoEmergencia);
     //Read
     public List<Contacto_Emergencia> list();
+    public List<String[]> listaCantidadRelacionesContacto(String relacion_contacto);
     //Update
     public void update(Contacto_Emergencia contactoEmergencia);
     //Delete

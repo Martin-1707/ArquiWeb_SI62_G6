@@ -20,4 +20,17 @@ public interface IUserService {
 
     public List<String[]> findConteoAlergiaYtipoEnfermedadXusuario(String nombre);
 
+    public List<String[]> obtenerInformacionClinicaPorUsuario(Long idUsuario);
+
+    public List<String[]> obtenerCantidadDispositivosPorUsuario();
+
+    public List<String[]> obtenerHistorialUbicacionPorUsuario(Long idUsuario);
+
+    public List<String[]> obtenerEnfermedadesPorUsuario(Long idUsuario);
+
+    public List<String[]> obtenerAlergiasPorUsuario(Long idUsuario);
+
+    public List<String[]> ObtenerContactosEmergenciaPersonalesDeUsuario(String nombre);
+
+
 }
