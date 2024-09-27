@@ -87,5 +87,18 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             "WHERE u.id_usario = hc.id_usario", nativeQuery = true)
     List<String[]> findAlergiasByUsuarioId(Long idUsuario);
 
+    @Query(value = "SELECT CONCAT(u.us_nombre, ' ' ,u.us_apellido) AS Usuario,\n" +
+            "       COUNT(DISTINCT a.id_alergias) AS cantidad_alergias,\n" +
+            "\t   COUNT(DISTINCT e.id_enfermedades) AS cantidad_enfermedades,\n" +
+            "\t   STRING_AGG(DISTINCT e.tipo_enfermedad, ',' ORDER BY e.tipo_enfermedad ) AS tipos_enfermedades\n" +
+            "FROM users u\n" +
+            "JOIN historial_clinico hc ON u.id_usario = hc.id_usario\n" +
+            "JOIN detalle_medico dm ON hc.id_historial_clinico = dm.id_historial_clinico\n" +
+            "LEFT JOIN enfermedades e ON e.id_enfermedades = dm.id_enfermedades\n" +
+            "LEFT JOIN alergias a ON dm.id_alergias = a.id_alergias\n" +
+            "WHERE u.us_nombre like %:username% \n" +
+            "GROUP BY u.us_nombre,u.us_apellido;", nativeQuery = true)
+    public List<String[]> findConteoAlergiaYtipoEnfermedadXusuario(@Param("username") String username);
+
 
 }

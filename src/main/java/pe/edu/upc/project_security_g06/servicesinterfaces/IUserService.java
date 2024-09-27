@@ -1,5 +1,6 @@
 package pe.edu.upc.project_security_g06.servicesinterfaces;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.userdetails.User;
 import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoRolDTO;
 import pe.edu.upc.project_security_g06.entities.Users;
@@ -17,6 +18,8 @@ public interface IUserService {
 
     public List<String[]> obtenerUsuariosConDispositivosYRoles();
 
+    public List<String[]> findConteoAlergiaYtipoEnfermedadXusuario(String nombre);
+
     public List<String[]> obtenerInformacionClinicaPorUsuario(Long idUsuario);
 
     public List<String[]> obtenerCantidadDispositivosPorUsuario();
@@ -28,7 +31,6 @@ public interface IUserService {
     public List<String[]> obtenerAlergiasPorUsuario(Long idUsuario);
 
     public List<String[]> ObtenerContactosEmergenciaPersonalesDeUsuario(String nombre);
-
 
 
 }
