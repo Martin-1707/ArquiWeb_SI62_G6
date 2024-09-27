@@ -39,11 +39,6 @@ public class UserServiceImplement implements IUserService {
         return uR.findUsuariosWithDevicesAndRoles();
     }
 
-    @Override
-
-    public Users obtenerInformacionClinicaPorUsuario(int idUsuario) {
-        return null;
-    }
 
     @Override
     public List<String[]> ObtenerContactosEmergenciaPersonalesDeUsuario(String nombre) {
