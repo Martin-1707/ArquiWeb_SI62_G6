@@ -23,4 +23,14 @@ public class Historial_ClinicoServiceImplement implements IdHistorial_ClinicoSer
         return hcR.findAll();
     }
 
+    @Override
+    public void update(Historial_Clinico histclinico) {
+        hcR.save(histclinico);
+    }
+
+    @Override
+    public void delete(int id) {
+        hcR.deleteById(id);
+    }
+
 }

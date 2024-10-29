@@ -35,7 +35,7 @@ public class ContactoEmergenciaServiceImplements implements IContacEmergenciaSer
 
     @Override
     public void delete(int id) {
-
+        ceR.deleteById(id);
     }
 
 }

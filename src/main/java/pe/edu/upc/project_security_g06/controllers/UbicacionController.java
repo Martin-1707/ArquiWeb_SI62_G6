@@ -3,7 +3,9 @@ package pe.edu.upc.project_security_g06.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.project_security_g06.dtos.DistritoDTO;
 import pe.edu.upc.project_security_g06.dtos.UbicacionDTO;
+import pe.edu.upc.project_security_g06.entities.Distrito;
 import pe.edu.upc.project_security_g06.entities.Ubicacion;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IUbicacionService;
 
@@ -30,4 +32,14 @@ public class UbicacionController {
         uS.insert(d);
     }
 
+    @PutMapping
+    public void modificar(@RequestBody UbicacionDTO dto){
+        ModelMapper m=new ModelMapper();
+        Ubicacion d=m.map(dto,Ubicacion.class);
+        uS.update(d);
+    }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+        uS.delete(id);
+    }
 }

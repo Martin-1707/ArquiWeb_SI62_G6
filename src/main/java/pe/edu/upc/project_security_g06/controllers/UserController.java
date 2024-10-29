@@ -2,7 +2,6 @@ package pe.edu.upc.project_security_g06.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import pe.edu.upc.project_security_g06.dtos.*;
@@ -20,15 +19,12 @@ import java.util.stream.Collectors;
 public class UserController {
     @Autowired
     private IUserService uS;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+
 
     @PostMapping
     public void registrar(@RequestBody UserDTO dto) {
         ModelMapper m = new ModelMapper();
         Users u = m.map(dto, Users.class);
-        String encodedPassword = passwordEncoder.encode(u.getPassword());
-        u.setPassword(encodedPassword);
         uS.insert(u);
     }
 

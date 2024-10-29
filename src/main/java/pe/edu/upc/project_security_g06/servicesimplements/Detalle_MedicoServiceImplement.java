@@ -23,4 +23,14 @@ public class Detalle_MedicoServiceImplement implements IDetalle_MedicoService {
     public List<Detalle_Medico> list() {
         return dmR.findAll();
     }
+
+    @Override
+    public void update(Detalle_Medico detmed) {
+        dmR.save(detmed);
+    }
+
+    @Override
+    public void delete(int id) {
+        dmR.deleteById(id);
+    }
 }

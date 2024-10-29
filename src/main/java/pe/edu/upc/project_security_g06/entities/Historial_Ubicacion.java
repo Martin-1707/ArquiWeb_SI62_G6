@@ -17,22 +17,22 @@ public class Historial_Ubicacion {
     private LocalTime hora;
 
     @ManyToOne
-    @JoinColumn(name = "Idispositivo")
-    private Dispositivo dis;
+    @JoinColumn(name = "Idispositivo", nullable = false)
+    private Dispositivo dispositivo;
 
     @ManyToOne
-    @JoinColumn(name = "IdUbicacion")
-    private Ubicacion ubi;
+    @JoinColumn(name = "IdUbicacion", nullable = false)
+    private Ubicacion ubicacion;
 
     public Historial_Ubicacion() {
     }
 
-    public Historial_Ubicacion(int IdHistorial_Ubicacion, LocalDate fecha, LocalTime hora, Dispositivo dis, Ubicacion ubi) {
+    public Historial_Ubicacion(int IdHistorial_Ubicacion, LocalDate fecha, LocalTime hora, Dispositivo dispositivo, Ubicacion ubicacion) {
         this.IdHistorial_Ubicacion = IdHistorial_Ubicacion;
         this.fecha = fecha;
         this.hora = hora;
-        this.dis = dis;
-        this.ubi = ubi;
+        this.dispositivo = dispositivo;
+        this.ubicacion = ubicacion;
     }
     public int getIdHistorial_Ubicacion() {
         return IdHistorial_Ubicacion;
@@ -52,16 +52,20 @@ public class Historial_Ubicacion {
     public void setHora(LocalTime hora) {
         this.hora = hora;
     }
-    public Dispositivo getDis() {
-        return dis;
+
+    public Dispositivo getDispositivo() {
+        return dispositivo;
     }
-    public void setDis(Dispositivo dis) {
-        this.dis = dis;
+
+    public void setDispositivo(Dispositivo dispositivo) {
+        this.dispositivo = dispositivo;
     }
-    public Ubicacion getUbi() {
-        return ubi;
+
+    public Ubicacion getUbicacion() {
+        return ubicacion;
     }
-    public void setUbi(Ubicacion ubi) {
-        this.ubi = ubi;
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
     }
 }

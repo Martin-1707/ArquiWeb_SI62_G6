@@ -20,6 +20,21 @@ public class DispositivoServiceImplement implements IDispositivoService {
     }
 
     @Override
+    public List<Dispositivo> list() {
+        return dR.findAll();
+    }
+
+    @Override
+    public void update(Dispositivo dispositivo) {
+        dR.save(dispositivo);
+    }
+
+    @Override
+    public void delete(int id) {
+        dR.deleteById(id);
+    }
+
+    @Override
     public Dispositivo list(int Idispositivo) {
         return dR.findById(Idispositivo).orElse(new Dispositivo());
     }

@@ -2,15 +2,17 @@ package pe.edu.upc.project_security_g06.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.project_security_g06.dtos.DispositivoContactoAutoridadDTO;
+import pe.edu.upc.project_security_g06.dtos.DistritoDTO;
 import pe.edu.upc.project_security_g06.entities.Dispositivo;
 import pe.edu.upc.project_security_g06.dtos.DispositivoDTO;
+import pe.edu.upc.project_security_g06.entities.Distrito;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IDispositivoService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -25,6 +27,26 @@ public class DispositivoController {
         Dispositivo dis = m.map(dto, Dispositivo.class);
         dS.insert(dis);
     }
+
+    @GetMapping
+    public List<DispositivoDTO> listar(){
+        return dS.list().stream().map(x->{
+            ModelMapper m=new ModelMapper();
+            return m.map(x,DispositivoDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    @PutMapping
+    public void modificar(@RequestBody DispositivoDTO dto){
+        ModelMapper m=new ModelMapper();
+        Dispositivo d=m.map(dto,Dispositivo.class);
+        dS.update(d);
+    }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
+        dS.delete(id);
+    }
+
 
     @GetMapping("/{id}")
     public DispositivoDTO listarId(@PathVariable("id") Integer id) {

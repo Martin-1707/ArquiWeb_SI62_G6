@@ -24,4 +24,13 @@ public class UbicacionServiceImplement implements IUbicacionService {
         uR.save(ubi);
     }
 
+    @Override
+    public void update(Ubicacion ubicacion) {
+        uR.save(ubicacion);
+    }
+
+    @Override
+    public void delete(int id) {
+        uR.deleteById(id);
+    }
 }
