@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Repository
-public interface IUserRepository extends JpaRepository<Users, Long> {
+public interface IUserRepository extends JpaRepository<Users, Integer> {
     public Users findOneByUsername(String username);
 
     //BUSCAR POR NOMBRE
@@ -24,7 +24,7 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
     @Transactional
     @Modifying
     @Query(value = "insert into roles (rol, user_id) VALUES (:rol, :user_id)", nativeQuery = true)
-    public void insRol(@Param("rol") String authority, @Param("user_id") Long user_id);
+    public void insRol(@Param("rol") String authority, @Param("user_id") Integer user_id);
 
 
     @Query(value= "SELECT u.us_nombre, u.us_apellido,  d.nombre_dispositivo, r.rol"+
@@ -42,7 +42,7 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             "JOIN alergias a ON dm.id_alergias = a.id_alergias " +
             "JOIN enfermedades e ON dm.id_enfermedades = e.id_enfermedades " +
             "WHERE u.id_usario = hc.id_usario", nativeQuery = true)
-    List<String[]> findInformacionClinicaByUsuarioId(Long idUsuario);
+    List<String[]> findInformacionClinicaByUsuarioId(Integer idUsuario);
 
     @Query(value = "SELECT u.us_nombre, u.us_apellido, COUNT(d.Idispositivo) AS cantidad_dispositivos " +
             "FROM users u " +
@@ -69,7 +69,7 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             "JOIN ubicacion ub ON hu.Id_Ubicacion = ub.Id_Ubicacion " +
             "JOIN distrito dr ON dr.id_Distrito = ub.id_Distrito " +
             "WHERE u.id_usario = d.id_usario", nativeQuery = true)
-    List<String[]> findHistorialUbicacionByUsuarioId(Long idUsuario);
+    List<String[]> findHistorialUbicacionByUsuarioId(Integer idUsuario);
 
     @Query(value = "SELECT u.us_nombre, u.us_apellido, e.nombre_enfermedad, e.descripcion_enfermedad, e.tipo_enfermedad " +
             "FROM users u " +
@@ -77,7 +77,7 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             "JOIN detalle_medico dm ON hc.id_historial_clinico = dm.id_historial_clinico " +
             "JOIN enfermedades e ON dm.id_enfermedades = e.id_enfermedades " +
             "WHERE u.id_usario = hc.id_usario", nativeQuery = true)
-    List<String[]> findEnfermedadesByUsuarioId(Long idUsuario);
+    List<String[]> findEnfermedadesByUsuarioId(Integer idUsuario);
 
     @Query(value = "SELECT u.us_nombre, u.us_apellido, a.nombre_alergias, a.descripcion_alergias, a.causa_alergias " +
             "FROM users u " +
@@ -85,7 +85,7 @@ public interface IUserRepository extends JpaRepository<Users, Long> {
             "JOIN detalle_medico dm ON hc.id_usario = dm.id_historial_clinico " +
             "JOIN alergias a ON dm.id_alergias = a.id_alergias " +
             "WHERE u.id_usario = hc.id_usario", nativeQuery = true)
-    List<String[]> findAlergiasByUsuarioId(Long idUsuario);
+    List<String[]> findAlergiasByUsuarioId(Integer idUsuario);
 
     @Query(value = "SELECT CONCAT(u.us_nombre, ' ' ,u.us_apellido) AS Usuario,\n" +
             "       COUNT(DISTINCT a.id_alergias) AS cantidad_alergias,\n" +

@@ -24,12 +24,18 @@ public class UserServiceImplement implements IUserService {
     }
 
     @Override
-    public void delete(Long idUsuario) {
-        uR.deleteById(idUsuario);
+    public void delete(int id) {
+        uR.deleteById(id);
     }
 
     @Override
-    public Users listarId(Long idUsuario) {
+    public void update(Users usuario) {
+        uR.save(usuario);
+    }
+
+
+    @Override
+    public Users listarId(int idUsuario) {
         return uR.findById(idUsuario).orElse(new Users());
     }
 
@@ -50,7 +56,7 @@ public class UserServiceImplement implements IUserService {
         return uR.findContactosByUsuario(nombre);
     }
 
-    public List<String[]> obtenerInformacionClinicaPorUsuario(Long idUsuario) {
+    public List<String[]> obtenerInformacionClinicaPorUsuario(int idUsuario) {
         return uR.findInformacionClinicaByUsuarioId(idUsuario);
     }
 
@@ -60,17 +66,17 @@ public class UserServiceImplement implements IUserService {
     }
 
     @Override
-    public List<String[]> obtenerHistorialUbicacionPorUsuario(Long idUsuario) {
+    public List<String[]> obtenerHistorialUbicacionPorUsuario(int idUsuario) {
         return uR.findHistorialUbicacionByUsuarioId(idUsuario);
     }
 
     @Override
-    public List<String[]> obtenerEnfermedadesPorUsuario(Long idUsuario) {
+    public List<String[]> obtenerEnfermedadesPorUsuario(int idUsuario) {
         return uR.findEnfermedadesByUsuarioId(idUsuario);
     }
 
     @Override
-    public List<String[]> obtenerAlergiasPorUsuario(Long idUsuario) {
+    public List<String[]> obtenerAlergiasPorUsuario(int idUsuario) {
         return uR.findAlergiasByUsuarioId(idUsuario);
     }
 }

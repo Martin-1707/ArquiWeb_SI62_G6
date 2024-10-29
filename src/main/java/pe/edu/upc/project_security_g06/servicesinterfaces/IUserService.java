@@ -1,7 +1,6 @@
 package pe.edu.upc.project_security_g06.servicesinterfaces;
 
-import org.springframework.data.repository.query.Param;
-import pe.edu.upc.project_security_g06.dtos.UsuarioDispositivoRolDTO;
+import pe.edu.upc.project_security_g06.entities.Ubicacion;
 import pe.edu.upc.project_security_g06.entities.Users;
 
 import java.util.List;
@@ -11,23 +10,25 @@ public interface IUserService {
 
     public List<Users> list();
 
-    public void delete(Long idUsuario);
+    public void delete(int id);
 
-    public Users listarId(Long idUsuario);
+    public void update(Users usuario);
+
+    public Users listarId(int idUsuario);
 
     public List<String[]> obtenerUsuariosConDispositivosYRoles();
 
     public List<String[]> findConteoAlergiaYtipoEnfermedadXusuario(String nombre);
 
-    public List<String[]> obtenerInformacionClinicaPorUsuario(Long idUsuario);
+    public List<String[]> obtenerInformacionClinicaPorUsuario(int idUsuario);
 
     public List<String[]> obtenerCantidadDispositivosPorUsuario();
 
-    public List<String[]> obtenerHistorialUbicacionPorUsuario(Long idUsuario);
+    public List<String[]> obtenerHistorialUbicacionPorUsuario(int idUsuario);
 
-    public List<String[]> obtenerEnfermedadesPorUsuario(Long idUsuario);
+    public List<String[]> obtenerEnfermedadesPorUsuario(int idUsuario);
 
-    public List<String[]> obtenerAlergiasPorUsuario(Long idUsuario);
+    public List<String[]> obtenerAlergiasPorUsuario(int idUsuario);
 
     public List<String[]> ObtenerContactosEmergenciaPersonalesDeUsuario(String nombre);
 

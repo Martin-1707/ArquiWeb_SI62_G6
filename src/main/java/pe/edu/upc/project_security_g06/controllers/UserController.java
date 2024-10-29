@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import pe.edu.upc.project_security_g06.dtos.*;
+import pe.edu.upc.project_security_g06.entities.Ubicacion;
 import pe.edu.upc.project_security_g06.entities.Users;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IUserService;
 
@@ -32,16 +33,16 @@ public class UserController {
     public void modificar(@RequestBody UserDTO dto) {
         ModelMapper m = new ModelMapper();
         Users u = m.map(dto, Users.class);
-        uS.insert(u);
+        uS.update(u);
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Long id) {
+    public void eliminar(@PathVariable("id") Integer id) {
         uS.delete(id);
     }
 
     @GetMapping("/{id}")
-    public UserDTO listarId(@PathVariable("id") Long id) {
+    public UserDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         UserDTO dto = m.map(uS.listarId(id), UserDTO.class);
         return dto;
@@ -88,7 +89,7 @@ public class UserController {
         return listaDTO;
     }
     @GetMapping("/{idUsuario}/informacion-clinica")
-    public List<UsuarioHistorialClinicoDTO> obtenerInformacionClinicaPorUsuario(@PathVariable Long idUsuario) {
+    public List<UsuarioHistorialClinicoDTO> obtenerInformacionClinicaPorUsuario(@PathVariable Integer idUsuario) {
         List<String[]> resultados = uS.obtenerInformacionClinicaPorUsuario(idUsuario);
         List<UsuarioHistorialClinicoDTO> listaDTO = new ArrayList<>();
 
@@ -136,7 +137,7 @@ public class UserController {
     }
 
     @GetMapping("/{idUsuario}/historial-ubicaciones")
-    public List<UsuarioHistorialUbicacionDTO> obtenerHistorialUbicacionPorUsuario(@PathVariable Long idUsuario) {
+    public List<UsuarioHistorialUbicacionDTO> obtenerHistorialUbicacionPorUsuario(@PathVariable Integer idUsuario) {
         List<String[]> resultados = uS.obtenerHistorialUbicacionPorUsuario(idUsuario);
         List<UsuarioHistorialUbicacionDTO> listaDTO = new ArrayList<>();
 
@@ -154,7 +155,7 @@ public class UserController {
     }
 
     @GetMapping("/{idUsuario}/enfermedades")
-    public List<UsuarioEnfermedadDTO> obtenerEnfermedadesPorUsuario(@PathVariable Long idUsuario) {
+    public List<UsuarioEnfermedadDTO> obtenerEnfermedadesPorUsuario(@PathVariable Integer idUsuario) {
         List<String[]> resultados = uS.obtenerEnfermedadesPorUsuario(idUsuario);
         List<UsuarioEnfermedadDTO> listaDTO = new ArrayList<>();
 
@@ -172,7 +173,7 @@ public class UserController {
     }
 
     @GetMapping("/{idUsuario}/alergias")
-    public List<UsuarioAlergiaDTO> obtenerAlergiasPorUsuario(@PathVariable Long idUsuario) {
+    public List<UsuarioAlergiaDTO> obtenerAlergiasPorUsuario(@PathVariable Integer idUsuario) {
         List<String[]> resultados = uS.obtenerAlergiasPorUsuario(idUsuario);
         List<UsuarioAlergiaDTO> listaDTO = new ArrayList<>();
 
