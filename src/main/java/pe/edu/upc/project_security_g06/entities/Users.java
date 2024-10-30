@@ -9,11 +9,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class Users implements Serializable {
+public class Users{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long IdUsario;
+    private int IdUsario;
 
     @Column(name = "us_nombre",nullable = false,length = 30)
     private String us_nombre;
@@ -40,7 +40,8 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(String us_nombre,String us_apellido,int us_dni,int us_telefono,LocalDate us_fechanacimiento,String us_email) {
+    public Users(int IdUsario, String us_nombre,String us_apellido,int us_dni,int us_telefono,LocalDate us_fechanacimiento,String us_email) {
+        this.IdUsario = IdUsario;
         this.us_nombre = us_nombre;
         this.us_apellido = us_apellido;
         this.us_dni = us_dni;
@@ -49,11 +50,11 @@ public class Users implements Serializable {
         this.us_email = us_email;
     }
 
-    public Long getIdUsario() {
+    public int getIdUsario() {
         return IdUsario;
     }
 
-    public void setIdUsario(Long IdUsario) {
+    public void setIdUsario(int IdUsario) {
         this.IdUsario = IdUsario;
     }
 

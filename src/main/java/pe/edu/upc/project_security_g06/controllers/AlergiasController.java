@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.project_security_g06.dtos.AlergiasDTO;
+import pe.edu.upc.project_security_g06.dtos.UserDTO;
 import pe.edu.upc.project_security_g06.entities.Alergias;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IdAlergiasService;
 
@@ -42,5 +43,10 @@ public class AlergiasController {
         aS.delete(id);
     }
 
-
+    @GetMapping("/{id}")
+    public AlergiasDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        AlergiasDTO dto = m.map(aS.listarId(id), AlergiasDTO.class);
+        return dto;
+    }
 }

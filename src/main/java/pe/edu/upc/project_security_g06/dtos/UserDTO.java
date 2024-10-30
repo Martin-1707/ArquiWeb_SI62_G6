@@ -5,7 +5,7 @@ import jakarta.persistence.Column;
 import java.time.LocalDate;
 
 public class UserDTO {
-    private Long IdUsario;
+    private int IdUsario;
 
     private String us_nombre;
     private String us_apellido;
@@ -17,11 +17,11 @@ public class UserDTO {
     private String password;
     private Boolean enabled;
 
-    public Long getIdUsario() {
+    public int getIdUsario() {
         return IdUsario;
     }
 
-    public void setIdUsario(Long IdUsario) {
+    public void setIdUsario(int IdUsario) {
         this.IdUsario = IdUsario;
     }
 
