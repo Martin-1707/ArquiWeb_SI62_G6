@@ -1,5 +1,6 @@
 package pe.edu.upc.project_security_g06.servicesinterfaces;
 
+import pe.edu.upc.project_security_g06.entities.Alergias;
 import pe.edu.upc.project_security_g06.entities.Ciudad;
 import pe.edu.upc.project_security_g06.entities.Contacto_Autoridades;
 import pe.edu.upc.project_security_g06.entities.Contacto_Emergencia;
@@ -16,4 +17,6 @@ public interface IContacAutoridadesService {
     public void update(Contacto_Autoridades cont_auto);
     //Delete
     public void delete(int id);
+    //ListarId
+    public Contacto_Autoridades listarId(int id);
 }

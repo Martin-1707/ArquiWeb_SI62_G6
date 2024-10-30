@@ -3,6 +3,7 @@ package pe.edu.upc.project_security_g06.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.project_security_g06.dtos.AlergiasDTO;
 import pe.edu.upc.project_security_g06.dtos.CiudadDTO;
 import pe.edu.upc.project_security_g06.dtos.Contacto_AutoridadesDTO;
 import pe.edu.upc.project_security_g06.dtos.Contacto_EmergenciaDTO;
@@ -46,6 +47,13 @@ public class ContactoAutoridadesController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
         caS.delete(id);
+    }
+
+    @GetMapping("/{id}")
+    public Contacto_AutoridadesDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        Contacto_AutoridadesDTO dto = m.map(caS.listarId(id), Contacto_AutoridadesDTO.class);
+        return dto;
     }
 
 
