@@ -39,7 +39,7 @@ public class AlergiasController {
         aS.update(d);
     }
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id){
+    public void delete(@PathVariable("id") Integer id){
         aS.delete(id);
     }
 
