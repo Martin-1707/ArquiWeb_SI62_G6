@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/contacto-emergencia")
+@RequestMapping("/contactoEmergencia")
 public class ContactoEmergenciaController {
     @Autowired
     private IContacEmergenciaService ceS;
