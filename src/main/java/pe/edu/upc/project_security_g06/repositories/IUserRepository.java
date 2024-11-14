@@ -41,8 +41,8 @@ public interface IUserRepository extends JpaRepository<Users, Integer> {
             "JOIN detalle_medico dm ON hc.id_historial_clinico = dm.id_historial_clinico " +
             "JOIN alergias a ON dm.id_alergias = a.id_alergias " +
             "JOIN enfermedades e ON dm.id_enfermedades = e.id_enfermedades " +
-            "WHERE u.id_usario = hc.id_usario", nativeQuery = true)
-    List<String[]> findInformacionClinicaByUsuarioId(Integer idUsuario);
+            "WHERE u.id_usario = :idUsuario", nativeQuery = true)
+    List<String[]> findInformacionClinicaByUsuarioId(@Param("idUsuario")Integer idUsuario);
 
     @Query(value = "SELECT u.us_nombre, u.us_apellido, COUNT(d.Idispositivo) AS cantidad_dispositivos " +
             "FROM users u " +
