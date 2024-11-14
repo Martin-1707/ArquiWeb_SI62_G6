@@ -4,7 +4,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.project_security_g06.dtos.AlergiasDTO;
-import pe.edu.upc.project_security_g06.dtos.UserDTO;
 import pe.edu.upc.project_security_g06.entities.Alergias;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IdAlergiasService;
 

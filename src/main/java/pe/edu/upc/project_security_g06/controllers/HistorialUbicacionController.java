@@ -49,4 +49,6 @@ public class HistorialUbicacionController {
         Historial_Ubicacion d = m.map(dto, Historial_Ubicacion.class);
         huS.update(d);
     }
+
+
 }

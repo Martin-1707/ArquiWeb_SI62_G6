@@ -32,4 +32,10 @@ public class EnfermedadesServiceImplement implements IdEnfermedadService{
     public void delete(int id) {
         eR.deleteById(id);
     }
+
+    @Override
+    public Enfermedades listarId(int id) {
+        return eR.findById(id).orElse(new Enfermedades());
+
+    }
 }

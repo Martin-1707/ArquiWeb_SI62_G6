@@ -13,4 +13,6 @@ public interface IdEnfermedadService {
     public void update(Enfermedades enfermedades);
     //Delete
     public void delete(int id);
+    //ListarId
+    public Enfermedades listarId(int id);
 }

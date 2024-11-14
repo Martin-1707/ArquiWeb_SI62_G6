@@ -1,19 +1,17 @@
 package pe.edu.upc.project_security_g06.dtos;
 
 public class AlergiasDTO {
-    private int IdAlergias;
+    private int idAlergias;
     private String nombre_alergias;
     private String descripcion_alergias;
     private String causa_alergias;
 
     public int getIdAlergias() {
-        return IdAlergias;
+        return idAlergias;
     }
-
     public void setIdAlergias(int idAlergias) {
-        IdAlergias = idAlergias;
+        this.idAlergias = idAlergias;
     }
-
     public String getNombre_alergias() {
         return nombre_alergias;
     }

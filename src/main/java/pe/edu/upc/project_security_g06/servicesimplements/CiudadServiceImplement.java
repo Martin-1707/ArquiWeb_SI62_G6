@@ -34,4 +34,10 @@ public class CiudadServiceImplement implements ICiudadService {
     public void delete(int id) {
         cR.deleteById(id);
     }
+
+    @Override
+    public Ciudad listarId(int id) {
+        return cR.findById(id).orElse(new Ciudad());
+
+    }
 }

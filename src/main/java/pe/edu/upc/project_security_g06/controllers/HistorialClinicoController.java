@@ -5,9 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.project_security_g06.dtos.AlergiasDTO;
-import pe.edu.upc.project_security_g06.dtos.DistritoDTO;
 import pe.edu.upc.project_security_g06.dtos.Historial_ClinicoDTO;
-import pe.edu.upc.project_security_g06.entities.Distrito;
 import pe.edu.upc.project_security_g06.entities.Historial_Clinico;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IdHistorial_ClinicoService;
 
@@ -26,6 +24,7 @@ public class HistorialClinicoController {
         Historial_Clinico d=m.map(dto,Historial_Clinico.class);
         hcS.insert(d);
     }
+
     @GetMapping
     public List<Historial_ClinicoDTO> listar() {
         return hcS.list().stream().map(x->{
@@ -40,10 +39,17 @@ public class HistorialClinicoController {
         Historial_Clinico d=m.map(dto,Historial_Clinico.class);
         hcS.update(d);
     }
+
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
         hcS.delete(id);
     }
 
+    @GetMapping("/{id}")
+    public Historial_ClinicoDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m=new ModelMapper();
+        Historial_ClinicoDTO dto=m.map(hcS.listarId(id),Historial_ClinicoDTO.class);
+        return dto;
+    }
 
 }

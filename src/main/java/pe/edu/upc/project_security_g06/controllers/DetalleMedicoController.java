@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.project_security_g06.dtos.AlergiasDTO;
 import pe.edu.upc.project_security_g06.dtos.Detalle_MedicoDTO;
-import pe.edu.upc.project_security_g06.dtos.DistritoDTO;
 import pe.edu.upc.project_security_g06.entities.Detalle_Medico;
-import pe.edu.upc.project_security_g06.entities.Distrito;
 import pe.edu.upc.project_security_g06.servicesinterfaces.IDetalle_MedicoService;
 
 import java.util.List;
@@ -40,8 +38,16 @@ public class DetalleMedicoController {
         Detalle_Medico d=m.map(dto,Detalle_Medico.class);
         dmS.update(d);
     }
+
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
         dmS.delete(id);
+    }
+
+    @GetMapping("/{id}")
+    public Detalle_MedicoDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        Detalle_MedicoDTO dto = m.map(dmS.listarId(id), Detalle_MedicoDTO.class);
+        return dto;
     }
 }

@@ -14,4 +14,6 @@ public interface ICiudadService {
     public void update(Ciudad ciudad);
     //Delete
     public void delete(int id);
+    //ListarId
+    public Ciudad listarId(int id);
 }

@@ -32,4 +32,10 @@ public class DistritoServiceImplement implements IDistritoService {
     public void delete(int id) {
         dR.deleteById(id);
     }
+
+    @Override
+    public Distrito listarId(int id) {
+        return dR.findById(id).orElse(new Distrito());
+
+    }
 }

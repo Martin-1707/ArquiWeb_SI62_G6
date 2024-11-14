@@ -3,7 +3,6 @@ package pe.edu.upc.project_security_g06.servicesinterfaces;
 import pe.edu.upc.project_security_g06.entities.Historial_Ubicacion;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IHistorial_UbicacionService {
     public void insert (Historial_Ubicacion h);

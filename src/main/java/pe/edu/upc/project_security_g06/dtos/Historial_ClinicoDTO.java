@@ -1,4 +1,8 @@
 package pe.edu.upc.project_security_g06.dtos;
+
+
+import org.springframework.security.core.userdetails.User;
+import pe.edu.upc.project_security_g06.entities.Ciudad;
 import pe.edu.upc.project_security_g06.entities.Users;
 
 public class Historial_ClinicoDTO {

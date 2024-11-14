@@ -13,4 +13,7 @@ public interface IDetalle_MedicoService {
     public void update (Detalle_Medico detmed);
     //Delete
     public void delete (int id);
+    //ListarId
+    public Detalle_Medico listarId(int id);
+
 }

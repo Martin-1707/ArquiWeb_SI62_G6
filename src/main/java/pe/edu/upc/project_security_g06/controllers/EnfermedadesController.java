@@ -41,4 +41,11 @@ public class EnfermedadesController {
     public void eliminar(@PathVariable("id") Integer id){
         eS.delete(id);
     }
+
+    @GetMapping("/{id}")
+    public EnfermedadesDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        EnfermedadesDTO dto = m.map(eS.listarId(id), EnfermedadesDTO.class);
+        return dto;
+    }
 }

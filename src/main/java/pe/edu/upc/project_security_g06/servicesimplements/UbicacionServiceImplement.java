@@ -33,4 +33,9 @@ public class UbicacionServiceImplement implements IUbicacionService {
     public void delete(int id) {
         uR.deleteById(id);
     }
+
+    @Override
+    public Ubicacion listarId(int id) {
+        return uR.findById(id).orElse(new Ubicacion());
+    }
 }

@@ -33,4 +33,9 @@ public class Historial_ClinicoServiceImplement implements IdHistorial_ClinicoSer
         hcR.deleteById(id);
     }
 
+    @Override
+    public Historial_Clinico listarId(int id) {
+        return hcR.findById(id).orElse(new Historial_Clinico());
+
+    }
 }

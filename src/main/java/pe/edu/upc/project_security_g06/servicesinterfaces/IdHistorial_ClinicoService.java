@@ -1,5 +1,6 @@
 package pe.edu.upc.project_security_g06.servicesinterfaces;
 
+import pe.edu.upc.project_security_g06.entities.Detalle_Medico;
 import pe.edu.upc.project_security_g06.entities.Historial_Clinico;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface IdHistorial_ClinicoService {
     public void update (Historial_Clinico histclinico);
     //Delete
     public void delete (int id);
+    //ListarId
+    public Historial_Clinico listarId(int id);
 }

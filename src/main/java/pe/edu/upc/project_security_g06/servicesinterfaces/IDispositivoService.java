@@ -13,7 +13,7 @@ public interface IDispositivoService {
     public  void update(Dispositivo dispositivo);
     //Delete
     public void delete(int id);
-
+    //ListId
     public Dispositivo list(int Idispositivo);
 
     public List<String[]> obtenerdetalledispositivoycontactoautoridad (Integer idDispositivo);

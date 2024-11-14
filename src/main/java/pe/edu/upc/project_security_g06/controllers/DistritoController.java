@@ -41,4 +41,11 @@ public class DistritoController {
     public void eliminar(@PathVariable("id") Integer id){
         dS.delete(id);
     }
+
+    @GetMapping("/{id}")
+    public DistritoDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        DistritoDTO dto = m.map(dS.listarId(id), DistritoDTO.class);
+        return dto;
+    }
 }

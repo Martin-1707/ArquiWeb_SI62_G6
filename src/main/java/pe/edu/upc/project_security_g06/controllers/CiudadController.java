@@ -42,4 +42,11 @@ public class CiudadController {
     public void eliminar(@PathVariable("id") Integer id){
         cS.delete(id);
     }
+
+    @GetMapping("/{id}")
+    public CiudadDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        CiudadDTO dto = m.map(cS.listarId(id), CiudadDTO.class);
+        return dto;
+    }
 }

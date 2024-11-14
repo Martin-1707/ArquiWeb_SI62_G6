@@ -33,4 +33,10 @@ public class Detalle_MedicoServiceImplement implements IDetalle_MedicoService {
     public void delete(int id) {
         dmR.deleteById(id);
     }
+
+    @Override
+    public Detalle_Medico listarId(int id) {
+        return dmR.findById(id).orElse(new Detalle_Medico());
+
+    }
 }
