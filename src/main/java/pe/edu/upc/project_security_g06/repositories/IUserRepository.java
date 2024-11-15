@@ -68,8 +68,8 @@ public interface IUserRepository extends JpaRepository<Users, Integer> {
             "JOIN historial_ubicacion hu ON d.Idispositivo = hu.Idispositivo " +
             "JOIN ubicacion ub ON hu.Id_Ubicacion = ub.Id_Ubicacion " +
             "JOIN distrito dr ON dr.id_Distrito = ub.id_Distrito " +
-            "WHERE u.id_usario = d.id_usario", nativeQuery = true)
-    List<String[]> findHistorialUbicacionByUsuarioId(Integer idUsuario);
+            "WHERE u.id_usario = :idUsuario", nativeQuery = true)
+    List<String[]> findHistorialUbicacionByUsuarioId(@Param("idUsuario")Integer idUsuario);
 
     @Query(value = "SELECT u.us_nombre, u.us_apellido, e.nombre_enfermedad, e.descripcion_enfermedad, e.tipo_enfermedad " +
             "FROM users u " +
