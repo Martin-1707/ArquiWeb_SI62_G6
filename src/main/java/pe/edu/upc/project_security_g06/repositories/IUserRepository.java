@@ -96,9 +96,9 @@ public interface IUserRepository extends JpaRepository<Users, Integer> {
             "JOIN detalle_medico dm ON hc.id_historial_clinico = dm.id_historial_clinico\n" +
             "LEFT JOIN enfermedades e ON e.id_enfermedades = dm.id_enfermedades\n" +
             "LEFT JOIN alergias a ON dm.id_alergias = a.id_alergias\n" +
-            "WHERE u.us_nombre like %:username% \n" +
+            "WHERE u.us_nombre like %:us_nombre% \n" +
             "GROUP BY u.us_nombre,u.us_apellido;", nativeQuery = true)
-    public List<String[]> findConteoAlergiaYtipoEnfermedadXusuario(@Param("username") String username);
+    public List<String[]> findConteoAlergiaYtipoEnfermedadXusuario(@Param("us_nombre") String us_nombre);
 
 
 }

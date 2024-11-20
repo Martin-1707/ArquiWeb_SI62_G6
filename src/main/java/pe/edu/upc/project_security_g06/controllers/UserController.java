@@ -105,7 +105,7 @@ public class UserController {
         return listaDTO;
     }
 
-    @GetMapping("/CantidadAlerEnferXuser/{us_nombre}")
+    @GetMapping("/CantidadAlerEnferXuser")
     public List<UsuarioConteoAlerEnferDTO>findConteoAlergiaYtipoEnfermedadXusuario(@RequestParam String name){
         List<String[]> lista=uS.findConteoAlergiaYtipoEnfermedadXusuario(name);
         List<UsuarioConteoAlerEnferDTO>listaDTO=new ArrayList<>();

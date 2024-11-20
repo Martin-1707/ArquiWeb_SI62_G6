@@ -12,8 +12,8 @@ public class Historial_UbicacionDTO {
     private int IdHistorial_Ubicacion;
     private LocalDate fecha;
     private LocalTime hora;
-    private Dispositivo dis;
-    private Ubicacion ubi;
+    private Dispositivo dispositivo;
+    private Ubicacion ubicacion;
 
     public int getIdHistorial_Ubicacion() {
         return IdHistorial_Ubicacion;
@@ -33,16 +33,20 @@ public class Historial_UbicacionDTO {
     public void setHora(LocalTime hora) {
         this.hora = hora;
     }
-    public Dispositivo getDis() {
-        return dis;
+
+    public Dispositivo getDispositivo() {
+        return dispositivo;
     }
-    public void setDis(Dispositivo dis) {
-        this.dis = dis;
+
+    public void setDispositivo(Dispositivo dispositivo) {
+        this.dispositivo = dispositivo;
     }
-    public Ubicacion getUbi() {
-        return ubi;
+
+    public Ubicacion getUbicacion() {
+        return ubicacion;
     }
-    public void setUbi(Ubicacion ubi) {
-        this.ubi = ubi;
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
     }
 }

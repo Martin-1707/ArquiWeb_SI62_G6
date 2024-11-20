@@ -2,6 +2,7 @@ package pe.edu.upc.project_security_g06.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.project_security_g06.entities.Historial_Ubicacion;
 import pe.edu.upc.project_security_g06.dtos.Historial_UbicacionDTO;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/historialUbicaciones")
+@PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
 public class HistorialUbicacionController {
     @Autowired
     private IHistorial_UbicacionService huS;

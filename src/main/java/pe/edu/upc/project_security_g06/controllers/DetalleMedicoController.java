@@ -2,6 +2,7 @@ package pe.edu.upc.project_security_g06.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.project_security_g06.dtos.AlergiasDTO;
 import pe.edu.upc.project_security_g06.dtos.Detalle_MedicoDTO;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/detalleMedico")
+@PreAuthorize("hasAnyAuthority('ADMINISTRADOR','PERSONALEMERGENCIA')")
 public class DetalleMedicoController {
     @Autowired
     private IDetalle_MedicoService dmS;

@@ -3,6 +3,7 @@ package pe.edu.upc.project_security_g06.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.project_security_g06.dtos.DispositivoContactoAutoridadDTO;
 import pe.edu.upc.project_security_g06.entities.Dispositivo;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/dispositivos")
+@PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
 public class DispositivoController {
     @Autowired
     private IDispositivoService dS;

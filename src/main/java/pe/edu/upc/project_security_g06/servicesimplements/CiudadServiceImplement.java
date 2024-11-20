@@ -14,7 +14,6 @@ public class CiudadServiceImplement implements ICiudadService {
     @Autowired
     private ICiudadRepository cR;
 
-
     @Override
     public void insert(Ciudad ciudad) {
         cR.save(ciudad);
