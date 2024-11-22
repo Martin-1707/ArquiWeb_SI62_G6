@@ -23,6 +23,18 @@ public class CORS implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
 
+        String origin = request.getHeader("Origin");
+
+        if ("https://securityg06.netlify.app".equals(origin) || "http://localhost:4200".equals(origin)) {
+            response.setHeader("Access-Control-Allow-Methods", "DELETE, GET, OPTIONS, PATCH, POST, PUT");
+            response.setHeader("Access-Control-Max-Age", "3600");
+            response.setHeader("Access-Control-Allow-Credentials", "true");
+            response.setHeader("Access-Control-Allow-Headers",
+                    "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN");
+        }
+        response.setHeader("Access-Control-Allow-Origin", "https://securityg06.netlify.app");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "DELETE, GET, OPTIONS, PATCH, POST, PUT");
         response.setHeader("Access-Control-Max-Age", "3600");

@@ -58,7 +58,7 @@ public class WebSecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/login").permitAll() // Permitir acceso a Swagger y login sin autenticación
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/login","/usuarios","/alergias").permitAll() // Permitir acceso a Swagger y login sin autenticación
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
